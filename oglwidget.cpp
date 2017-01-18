@@ -166,6 +166,34 @@ void DrawPyramid(){ // drawing a cylinder in OpenGL
 
 }
 
+void DrawTorus( int reso = 20){
+    double *s = new double[ reso+1];
+    double *t = new double[ reso+1];
+
+    for( int i=0; i<=reso; i++){ // compute x and y coordinates of citcle
+        s[i] = cos( 2.0 * PI * i / reso );
+        t[i] = sin( 2.0 * PI * i / reso );
+        //cout << i << " " << c[i] << endl;
+    }
+/*
+    glBegin( GL_QUADS); // each 4 points define a polygon
+    for( int i=0; i<reso; i++){
+        glNormal3f( c[i], s[i], 0.0); // normal vector used for all consecutive points
+        glVertex3f( c[i], s[i], 3.0); // 2 points ...
+        glVertex3f( c[i], s[i], 0.0);
+
+        glNormal3f( c[i+1], s[i+1], 0.0); // another normal with two more points
+        glVertex3f( c[i+1], s[i+1], 0.0);
+        glVertex3f( c[i+1], s[i+1], 3.0);
+    }
+
+*/
+    glEnd(); // concludes GL_QUADS
+
+    delete[] s; // de-allocate space
+    delete[] t;
+}
+
 // define material color properties for front and back side
 void SetMaterialColor( int side, float r, float g, float b){
     float	amb[4], dif[4], spe[4];
