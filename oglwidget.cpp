@@ -79,7 +79,8 @@ void DrawCylinder( int reso = 16){ // drawing a cylinder in OpenGL
             );
 
         }
-
+glEnd();
+glBegin(GL_TRIANGLE_FAN);
         glVertex3f(0, 0, 3); // center of circle
         for( int j = 0; j <= reso;j++) {
             glVertex3f(
