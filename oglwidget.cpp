@@ -8,6 +8,7 @@ using namespace std;
 static double alpha = 45.0; // rotation angle
 static double beta = 15.0; // rotation angle
 static double gamma3 = 85.0; // rotation angle
+static float doublePI = 2 * PI;
 
 
 // initialize Open GL lighting and projection matrix
@@ -190,15 +191,28 @@ void DrawPyramid(){ // drawing a cylinder in OpenGL
 
 }
 
-void DrawTorus( int reso = 20){
-    double *s = new double[ reso+1];
-    double *t = new double[ reso+1];
+void DrawTorus(float r, float R){
+    int reso = 18;
+    float *s = new float[ reso+1];
+    vector < vector <float> > x,y,z,fx,fy,fz;
+
 
     for( int i=0; i<=reso; i++){ // compute x and y coordinates of citcle
-        s[i] = cos( 2.0 * PI * i / reso );
-        t[i] = sin( 2.0 * PI * i / reso );
+        s[i] = doublePI / 20 * i;
         //cout << i << " " << c[i] << endl;
     }
+
+    for ( int i = 0; i <= reso; i++){
+        for ( int j = 0; j <= reso; j++){
+            x[i][j] = cosf(s[j]) * (R + r * cosf(s[i]));
+            y[i][j] = sinf(s[j]) * (R + r * cosf(s[i]));
+            z[i][j] = r * sinf(s[i]);
+            cout << "X[" << i << "][" << j << "] = " << x[i][j] << endl;
+
+        }
+    }
+
+
 /*
     glBegin( GL_QUADS); // each 4 points define a polygon
     for( int i=0; i<reso; i++){
@@ -215,7 +229,6 @@ void DrawTorus( int reso = 20){
     glEnd(); // concludes GL_QUADS
 
     delete[] s; // de-allocate space
-    delete[] t;
 }
 
 // define material color properties for front and back side
