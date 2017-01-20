@@ -1,6 +1,8 @@
 #include "oglwidget.h"
 #include <math.h>
 #include <iostream>
+#include <QDebug>
+#include <complex>
 
 #define PI 3.14159265358979323846
 using namespace std;
@@ -192,22 +194,64 @@ void DrawPyramid(){ // drawing a cylinder in OpenGL
 }
 
 void DrawTorus(float r, float R){
-    int reso = 18;
+    int reso = 19;
     float *s = new float[ reso+1];
-    vector < vector <float> > x,y,z,fx,fy,fz;
+    //vector < vector <float> > x;
+    //vector < vector <float> > y;
+    //vector < vector <float> > z;
+
+    float x[20][20];
+    float y[20][20];
+    float z[20][20];
 
 
-    for( int i=0; i<=reso; i++){ // compute x and y coordinates of citcle
-        s[i] = doublePI / 20 * i;
+    float sx,sy,sz,tx,ty,tz = .0;
+    float n[3];
+
+
+    for( int i=0; i <= reso; i++){ // compute x and y coordinates of citcle
+        s[i] = doublePI / reso * i;
         //cout << i << " " << c[i] << endl;
     }
 
+    glBegin(GL_QUADS);
     for ( int i = 0; i <= reso; i++){
         for ( int j = 0; j <= reso; j++){
             x[i][j] = cosf(s[j]) * (R + r * cosf(s[i]));
             y[i][j] = sinf(s[j]) * (R + r * cosf(s[i]));
             z[i][j] = r * sinf(s[i]);
-            cout << "X[" << i << "][" << j << "] = " << x[i][j] << endl;
+
+            sx += -sinf(s[j]) * (R + r * cosf(s[i]));
+            sy += cosf(s[j]) * (R + r * cosf(s[i]));
+            sz += 0;
+
+            tx += cosf(s[j]) * r * -sinf(s[i]);
+            ty += sinf(s[j]) * r * -sinf(s[i]);
+            tz += r * cosf(s[i]);
+
+            float calc = .0;
+            n[0] = sy * tz - sz * ty;
+            n[1] = sz * tx - sx * tz;
+            n[2] = sx * ty - sy * tx;
+
+            for (int k = 0; k < 3; k++){
+                calc += n[k] * n[k];
+            }
+
+            float norm = sqrtf(calc);
+
+            for (int k = 0; k < 3; k++){
+                n[k] = n[k] / norm;
+            }
+
+            x[i][j] += n[0];
+            y[i][j] += n[1];
+            z[i][j] += n[2];
+
+
+            glNormal3f(n[0],n[1],n[2]);
+            glVertex3f(x[i][j],y[i][j],z[i][j]);
+            glVertex3f(x[i+1][j+1],y[i+1][j+1],z[i+1][j+1]);
 
         }
     }
@@ -228,7 +272,7 @@ void DrawTorus(float r, float R){
 */
     glEnd(); // concludes GL_QUADS
 
-    delete[] s; // de-allocate space
+    //delete[] s; // de-allocate space
 }
 
 // define material color properties for front and back side
@@ -307,7 +351,8 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     SetMaterialColor( 2, 0.2, 0.2, 1.0); // back color is blue
 
     //draw a cylinder with default resolution
-    DrawCylinder();
+    //DrawCylinder();
+    DrawTorus(5,2);
 
     glTranslated( 0 ,0 ,-5.0);     // Move 10 units backwards in z, since camera is at origin
     glScaled( 1.0, 1.0, 1.0);       // scale objects
