@@ -211,7 +211,6 @@ void DrawTorus(float r, float R){
     float tx = .0;
     float ty = .0;
     float tz = .0;
-
     float n[3];
 
 
@@ -220,7 +219,6 @@ void DrawTorus(float r, float R){
         //cout << i << " " << c[i] << endl;
     }
 
-    glBegin(GL_QUADS);
     for ( int i = 0; i <= reso; i++){
         for ( int j = 0; j <= reso; j++){
             x[i][j] = cosf(s[j]) * (R + r * cosf(s[i]));
@@ -236,32 +234,40 @@ void DrawTorus(float r, float R){
             tz += r * cosf(s[i]);
 
 
-            n[0] = sy * tz - sz * ty;
-            n[1] = sz * tx - sx * tz;
-            n[2] = sx * ty - sy * tx;
-
-            float calc = .0;
-            for (int k = 0; k < 3; k++){
-                calc += n[k] * n[k];
-            }
-
-            float norm = sqrtf(calc);
-
-            for (int k = 0; k < 3; k++){
-                n[k] = n[k] / norm;
-            }
-
-            x[i][j] += n[0];
-            y[i][j] += n[1];
-            z[i][j] += n[2];
-
-
-            glNormal3f(n[0],n[1],n[2]);
-            glVertex3f(x[i][j],y[i][j],z[i][j]);
-            glVertex3f(x[i+1][j+1],y[i+1][j+1],z[i+1][j+1]);
 
         }
     }
+
+glBegin(GL_QUADS);
+
+for (int k = 0; k <= reso; k++){
+    for (int l = 0; l <= reso; l++){
+
+        n[0] = sy * tz - sz * ty;
+        n[1] = sz * tx - sx * tz;
+        n[2] = sx * ty - sy * tx;
+
+        float calc = .0;
+        for (int m = 0; m < 3; m++){
+            calc += n[m] * n[m];
+        }
+
+        float norm = sqrtf(calc);
+
+        for (int o = 0; o < 3; o++){
+            n[o] = n[o] / norm;
+        }
+
+        x[k][l] += n[0];
+        y[k][l] += n[1];
+        z[k][l] += n[2];
+
+
+        glNormal3f(n[0],n[1],n[2]);
+        glVertex3f(x[k][l],y[k][l],z[k][l]);
+        glVertex3f(x[k+1][l+1],y[k+1][l+1],z[k+1][l+1]);
+    }
+}
 
 
 /*
@@ -359,7 +365,7 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
 
     //draw a cylinder with default resolution
     //DrawCylinder();
-    DrawTorus(2,5);
+    DrawTorus(5,2);
 
     glTranslated( 0 ,0 ,-5.0);     // Move 10 units backwards in z, since camera is at origin
     glScaled( 1.0, 1.0, 1.0);       // scale objects
@@ -384,4 +390,3 @@ void OGLWidget::resizeGL(int w, int h) // called when window size is changed
     // adjust viewport transform
     glViewport(0,0,w,h);
 }
-
