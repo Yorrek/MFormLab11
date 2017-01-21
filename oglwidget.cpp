@@ -205,7 +205,13 @@ void DrawTorus(float r, float R){
     float z[20][20];
 
 
-    float sx,sy,sz,tx,ty,tz = .0;
+    float sx = .0;
+    float sy = .0;
+    float sz = .0;
+    float tx = .0;
+    float ty = .0;
+    float tz = .0;
+
     float n[3];
 
 
@@ -229,11 +235,12 @@ void DrawTorus(float r, float R){
             ty += sinf(s[j]) * r * -sinf(s[i]);
             tz += r * cosf(s[i]);
 
-            float calc = .0;
+
             n[0] = sy * tz - sz * ty;
             n[1] = sz * tx - sx * tz;
             n[2] = sx * ty - sy * tx;
 
+            float calc = .0;
             for (int k = 0; k < 3; k++){
                 calc += n[k] * n[k];
             }
