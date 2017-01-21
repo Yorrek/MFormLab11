@@ -233,6 +233,24 @@ void DrawTorus(float r, float R){
             ty += sinf(s[j]) * r * -sinf(s[i]);
             tz += r * cosf(s[i]);
 
+            n[0] = sy * tz - sz * ty;
+            n[1] = sz * tx - sx * tz;
+            n[2] = sx * ty - sy * tx;
+
+            float calc = .0;
+            for (int m = 0; m < 3; m++){
+                calc += n[m] * n[m];
+            }
+
+            float norm = sqrtf(calc);
+
+            for (int o = 0; o < 3; o++){
+                n[o] = n[o] / norm;
+            }
+
+            x[i][j] += n[0];
+            y[i][j] += n[1];
+            z[i][j] += n[2];
 
 
         }
@@ -243,24 +261,6 @@ glBegin(GL_QUADS);
 for (int k = 0; k <= reso; k++){
     for (int l = 0; l <= reso; l++){
 
-        n[0] = sy * tz - sz * ty;
-        n[1] = sz * tx - sx * tz;
-        n[2] = sx * ty - sy * tx;
-
-        float calc = .0;
-        for (int m = 0; m < 3; m++){
-            calc += n[m] * n[m];
-        }
-
-        float norm = sqrtf(calc);
-
-        for (int o = 0; o < 3; o++){
-            n[o] = n[o] / norm;
-        }
-
-        x[k][l] += n[0];
-        y[k][l] += n[1];
-        z[k][l] += n[2];
 
 
         glNormal3f(n[0],n[1],n[2]);
@@ -365,7 +365,7 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
 
     //draw a cylinder with default resolution
     //DrawCylinder();
-    DrawTorus(5,2);
+    DrawTorus(2,5);
 
     glTranslated( 0 ,0 ,-5.0);     // Move 10 units backwards in z, since camera is at origin
     glScaled( 1.0, 1.0, 1.0);       // scale objects
