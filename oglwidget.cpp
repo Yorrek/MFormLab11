@@ -352,7 +352,7 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
 
     //draw a cylinder with default resolution
     //DrawCylinder();
-    DrawTorus(5,2);
+    DrawTorus(2,5);
 
     glTranslated( 0 ,0 ,-5.0);     // Move 10 units backwards in z, since camera is at origin
     glScaled( 1.0, 1.0, 1.0);       // scale objects
