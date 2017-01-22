@@ -204,7 +204,11 @@ void DrawTorus(float r, float R){
     float x[reso + 1][reso + 1];
     float y[reso + 1][reso + 1];
     float z[reso + 1][reso + 1];
-    deque < float > norm_d;
+    float n_x[reso + 1][reso + 1];
+    float n_y[reso + 1][reso + 1];
+    float n_z[reso + 1][reso + 1];
+
+    //deque < float > norm_d;
 
 
     float sx = .0;
@@ -249,9 +253,10 @@ void DrawTorus(float r, float R){
 
             float norm = sqrtf(calc);
 
-            for (int o = 0; o < 3; o++){
-                norm_d.push_back(n[o] / norm);
-            }
+            n_x[i][j] = n[0] / norm;
+            n_y[i][j] = n[1] / norm;
+            n_z[i][j] = n[2] / norm;
+
 /*
             x[i][j] += n[0];
             y[i][j] += n[1];
@@ -263,37 +268,21 @@ void DrawTorus(float r, float R){
 
     glBegin(GL_QUADS);
 
-    float norbert[3];
+    //float norbert[3];
 
-    for (int m = 0; m < 3; m++){
-        n[m] = norm_d.front();
-        norm_d.pop_front();
-    }
-
-    for (int m = 0; m < 3; m++){
-        norbert[m] = n[m];
-    }
+    //for (int m = 0; m < 3; m++){
+    //    norbert[m] = n[m];
+    //}
 
     for (int k = 0; k < reso; k++){
         for (int l = 0; l < reso; l++){
-
-
-
-            glNormal3f(n[0],n[1],n[2]);
+            glNormal3f(n_x[l][k],n_y[l][k],n_z[l][k]);
             glVertex3f(x[l][k],y[l][k],z[l][k]);
+            glNormal3f(n_x[l][k+1],n_y[l][k+1],n_z[l][k+1]);
             glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
-            if(!norm_d.empty()){
-                for (int m = 0; m < 3; m++){
-                    n[m] = norm_d.front();
-                    norm_d.pop_front();
-                }
-                glNormal3f(n[0],n[1],n[2]);
-            }
-            else{
-                glNormal3f(norbert[0],norbert[1],norbert[2]);
-            }
-
+            glNormal3f(n_x[l+1][k+1],n_y[l+1][k+1],n_z[l+1][k+1]);
             glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
+            glNormal3f(n_x[l+1][k],n_y[l+1][k],n_z[l+1][k]);
             glVertex3f(x[l+1][k],y[l+1][k],z[l+1][k]);
 
         }
