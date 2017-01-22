@@ -73,26 +73,26 @@ void DrawCylinder( int reso = 16){ // drawing a cylinder in OpenGL
     glEnd(); // concludes GL_QUADS
 
     glBegin(GL_TRIANGLE_FAN);
-        glVertex3f(0, 0, 0); // center of circle
-        for( int j = 0; j <= reso;j++) {
-            glVertex3f(
-                        sin( 2.0 * PI * j / reso ),
-                        cos( 2.0 * PI * j / reso ),
-                        0
-            );
+    glVertex3f(0, 0, 0); // center of circle
+    for( int j = 0; j <= reso;j++) {
+        glVertex3f(
+                    sin( 2.0 * PI * j / reso ),
+                    cos( 2.0 * PI * j / reso ),
+                    0
+                    );
 
-        }
-glEnd();
-glBegin(GL_TRIANGLE_FAN);
-        glVertex3f(0, 0, 3); // center of circle
-        for( int j = 0; j <= reso;j++) {
-            glVertex3f(
-                        cos( 2.0 * PI * j / reso ),
-                        sin( 2.0 * PI * j / reso ),
-                        3
-            );
+    }
+    glEnd();
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex3f(0, 0, 3); // center of circle
+    for( int j = 0; j <= reso;j++) {
+        glVertex3f(
+                    cos( 2.0 * PI * j / reso ),
+                    sin( 2.0 * PI * j / reso ),
+                    3
+                    );
 
-        }
+    }
     glEnd();
 
     delete[] c; // de-allocate space
@@ -107,51 +107,51 @@ void DrawCube(){ // drawing a cylinder in OpenGL
     glBegin( GL_QUADS);
 
 
-        glNormal3f(-lenghtOfCube, lenghtOfCube,-lenghtOfCube);
-        glVertex3f( lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Right Of The Quad (Top)
-        glVertex3f(-lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Left Of The Quad (Top)
-        glNormal3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);
-        glVertex3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Bottom Left Of The Quad (Top)
-        glVertex3f( lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Bottom Right Of The Quad (Top)
+    glNormal3f(-lenghtOfCube, lenghtOfCube,-lenghtOfCube);
+    glVertex3f( lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Right Of The Quad (Top)
+    glVertex3f(-lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Left Of The Quad (Top)
+    glNormal3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);
+    glVertex3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Bottom Left Of The Quad (Top)
+    glVertex3f( lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Bottom Right Of The Quad (Top)
 
 
-        glNormal3f(-lenghtOfCube, -lenghtOfCube, lenghtOfCube);
-        glVertex3f( lenghtOfCube, -lenghtOfCube, lenghtOfCube);    // Top Right Of The Quad (Bottom)
-        glVertex3f(-lenghtOfCube, -lenghtOfCube, lenghtOfCube);    // Top Left Of The Quad (Bottom)
-        glNormal3f(-lenghtOfCube, -lenghtOfCube,-lenghtOfCube);
-        glVertex3f(-lenghtOfCube, -lenghtOfCube,-lenghtOfCube);    // Bottom Left Of The Quad (Bottom)
-        glVertex3f( lenghtOfCube, -lenghtOfCube,-lenghtOfCube);    // Bottom Right Of The Quad (Bottom)
+    glNormal3f(-lenghtOfCube, -lenghtOfCube, lenghtOfCube);
+    glVertex3f( lenghtOfCube, -lenghtOfCube, lenghtOfCube);    // Top Right Of The Quad (Bottom)
+    glVertex3f(-lenghtOfCube, -lenghtOfCube, lenghtOfCube);    // Top Left Of The Quad (Bottom)
+    glNormal3f(-lenghtOfCube, -lenghtOfCube,-lenghtOfCube);
+    glVertex3f(-lenghtOfCube, -lenghtOfCube,-lenghtOfCube);    // Bottom Left Of The Quad (Bottom)
+    glVertex3f( lenghtOfCube, -lenghtOfCube,-lenghtOfCube);    // Bottom Right Of The Quad (Bottom)
 
 
-        glNormal3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);
-        glVertex3f( lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Right Of The Quad (Front)
-        glVertex3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Left Of The Quad (Front)
-        glNormal3f(-lenghtOfCube,-lenghtOfCube, lenghtOfCube);
-        glVertex3f(-lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Left Of The Quad (Front)
-        glVertex3f( lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Right Of The Quad (Front)
+    glNormal3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);
+    glVertex3f( lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Right Of The Quad (Front)
+    glVertex3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Left Of The Quad (Front)
+    glNormal3f(-lenghtOfCube,-lenghtOfCube, lenghtOfCube);
+    glVertex3f(-lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Left Of The Quad (Front)
+    glVertex3f( lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Right Of The Quad (Front)
 
 
-        glNormal3f(-lenghtOfCube,-lenghtOfCube, -lenghtOfCube);
-        glVertex3f( lenghtOfCube,-lenghtOfCube, -lenghtOfCube);    // Top Right Of The Quad (Back)
-        glVertex3f(-lenghtOfCube,-lenghtOfCube, -lenghtOfCube);    // Top Left Of The Quad (Back)
-        glNormal3f(-lenghtOfCube, lenghtOfCube, -lenghtOfCube);
-        glVertex3f(-lenghtOfCube, lenghtOfCube, -lenghtOfCube);    // Bottom Left Of The Quad (Back)
-        glVertex3f( lenghtOfCube, lenghtOfCube, -lenghtOfCube);    // Bottom Right Of The Quad (Back)
+    glNormal3f(-lenghtOfCube,-lenghtOfCube, -lenghtOfCube);
+    glVertex3f( lenghtOfCube,-lenghtOfCube, -lenghtOfCube);    // Top Right Of The Quad (Back)
+    glVertex3f(-lenghtOfCube,-lenghtOfCube, -lenghtOfCube);    // Top Left Of The Quad (Back)
+    glNormal3f(-lenghtOfCube, lenghtOfCube, -lenghtOfCube);
+    glVertex3f(-lenghtOfCube, lenghtOfCube, -lenghtOfCube);    // Bottom Left Of The Quad (Back)
+    glVertex3f( lenghtOfCube, lenghtOfCube, -lenghtOfCube);    // Bottom Right Of The Quad (Back)
 
 
-        glNormal3f(-lenghtOfCube, lenghtOfCube,-lenghtOfCube);
-        glVertex3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Right Of The Quad (Left)
-        glVertex3f(-lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Left Of The Quad (Left)
-        glNormal3f(-lenghtOfCube,-lenghtOfCube,-lenghtOfCube);
-        glVertex3f(-lenghtOfCube,-lenghtOfCube,-lenghtOfCube);    // Bottom Left Of The Quad (Left)
-        glVertex3f(-lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Right Of The Quad (Left)
+    glNormal3f(-lenghtOfCube, lenghtOfCube,-lenghtOfCube);
+    glVertex3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Right Of The Quad (Left)
+    glVertex3f(-lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Left Of The Quad (Left)
+    glNormal3f(-lenghtOfCube,-lenghtOfCube,-lenghtOfCube);
+    glVertex3f(-lenghtOfCube,-lenghtOfCube,-lenghtOfCube);    // Bottom Left Of The Quad (Left)
+    glVertex3f(-lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Right Of The Quad (Left)
 
-        glNormal3f( lenghtOfCube, lenghtOfCube, lenghtOfCube);
-        glVertex3f( lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Right Of The Quad (Right)
-        glVertex3f( lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Left Of The Quad (Right)
-        glNormal3f( lenghtOfCube,-lenghtOfCube, lenghtOfCube);
-        glVertex3f( lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Left Of The Quad (Right)
-        glVertex3f( lenghtOfCube,-lenghtOfCube,-lenghtOfCube);    // Bottom Right Of The Quad (Right) - See more at: http://www.codemiles.com/c-opengl-examples/draw-3d-cube-using-opengl-t9018.html#sthash.179MIp09.dpuf
+    glNormal3f( lenghtOfCube, lenghtOfCube, lenghtOfCube);
+    glVertex3f( lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Right Of The Quad (Right)
+    glVertex3f( lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Left Of The Quad (Right)
+    glNormal3f( lenghtOfCube,-lenghtOfCube, lenghtOfCube);
+    glVertex3f( lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Left Of The Quad (Right)
+    glVertex3f( lenghtOfCube,-lenghtOfCube,-lenghtOfCube);    // Bottom Right Of The Quad (Right) - See more at: http://www.codemiles.com/c-opengl-examples/draw-3d-cube-using-opengl-t9018.html#sthash.179MIp09.dpuf
     glEnd(); // concludes GL_QUADS
 }
 
@@ -160,49 +160,49 @@ void DrawPyramid(){ // drawing a cylinder in OpenGL
     int lenghtOfQuad = 1;
 
     glBegin( GL_QUADS); // each 4 points define a polygon
-        glNormal3f(0,1.0f,0);
-        glVertex3f( lenghtOfQuad,0, lenghtOfQuad);    // Top Right Of The Quad (Bottom)
-        glVertex3f(-lenghtOfQuad,0, lenghtOfQuad);    // Top Left Of The Quad (Bottom)
-        glVertex3f(-lenghtOfQuad,0,-lenghtOfQuad);    // Bottom Left Of The Quad (Bottom)
-        glVertex3f( lenghtOfQuad,0,-lenghtOfQuad);    // Bottom Right Of The Quad (Bottom)
+    glNormal3f(0,1.0f,0);
+    glVertex3f( lenghtOfQuad,0, lenghtOfQuad);    // Top Right Of The Quad (Bottom)
+    glVertex3f(-lenghtOfQuad,0, lenghtOfQuad);    // Top Left Of The Quad (Bottom)
+    glVertex3f(-lenghtOfQuad,0,-lenghtOfQuad);    // Bottom Left Of The Quad (Bottom)
+    glVertex3f( lenghtOfQuad,0,-lenghtOfQuad);    // Bottom Right Of The Quad (Bottom)
     glEnd(); // concludes GL_QUADS
 
     int lenghtOfTriangle = 1;
 
     glBegin( GL_TRIANGLES);
-        glNormal3f(lenghtOfTriangle,0.0,-lenghtOfTriangle);
-        glVertex3f(-lenghtOfTriangle,0,-lenghtOfTriangle);
-        glVertex3f(lenghtOfTriangle,0,-lenghtOfTriangle);
-        glVertex3f(0,lenghtOfTriangle,0);
+    glNormal3f(lenghtOfTriangle,0.0,-lenghtOfTriangle);
+    glVertex3f(-lenghtOfTriangle,0,-lenghtOfTriangle);
+    glVertex3f(lenghtOfTriangle,0,-lenghtOfTriangle);
+    glVertex3f(0,lenghtOfTriangle,0);
 
-        glNormal3f(lenghtOfTriangle,0.0,lenghtOfTriangle);
-        glVertex3f(lenghtOfTriangle,0,-lenghtOfTriangle);
-        glVertex3f(lenghtOfTriangle,0,lenghtOfTriangle);
-        glVertex3f(0,lenghtOfTriangle,0);
+    glNormal3f(lenghtOfTriangle,0.0,lenghtOfTriangle);
+    glVertex3f(lenghtOfTriangle,0,-lenghtOfTriangle);
+    glVertex3f(lenghtOfTriangle,0,lenghtOfTriangle);
+    glVertex3f(0,lenghtOfTriangle,0);
 
-        glNormal3f(-lenghtOfTriangle,0.0,lenghtOfTriangle);
-        glVertex3f(lenghtOfTriangle,0,lenghtOfTriangle);
-        glVertex3f(-lenghtOfTriangle,0,lenghtOfTriangle);
-        glVertex3f(0,lenghtOfTriangle,0);
+    glNormal3f(-lenghtOfTriangle,0.0,lenghtOfTriangle);
+    glVertex3f(lenghtOfTriangle,0,lenghtOfTriangle);
+    glVertex3f(-lenghtOfTriangle,0,lenghtOfTriangle);
+    glVertex3f(0,lenghtOfTriangle,0);
 
-        glNormal3f(-lenghtOfTriangle,0.0,-lenghtOfTriangle);
-        glVertex3f(-lenghtOfTriangle,0,lenghtOfTriangle);
-        glVertex3f(-lenghtOfTriangle,0,-lenghtOfTriangle);
-        glVertex3f(0,lenghtOfTriangle,0);
+    glNormal3f(-lenghtOfTriangle,0.0,-lenghtOfTriangle);
+    glVertex3f(-lenghtOfTriangle,0,lenghtOfTriangle);
+    glVertex3f(-lenghtOfTriangle,0,-lenghtOfTriangle);
+    glVertex3f(0,lenghtOfTriangle,0);
     glEnd();
 
 }
 
 void DrawTorus(float r, float R){
-    int reso = 19;
+    int reso = 20;
     float *s = new float[ reso+1];
     //vector < vector <float> > x;
     //vector < vector <float> > y;
     //vector < vector <float> > z;
 
-    float x[20][20];
-    float y[20][20];
-    float z[20][20];
+    float x[21][21];
+    float y[21][21];
+    float z[21][21];
 
 
     float sx = .0;
@@ -237,42 +237,31 @@ void DrawTorus(float r, float R){
             n[1] = sz * tx - sx * tz;
             n[2] = sx * ty - sy * tx;
 
-            float calc = .0;
-            for (int m = 0; m < 3; m++){
-                calc += n[m] * n[m];
-            }
 
-            float norm = sqrtf(calc);
-
-            for (int o = 0; o < 3; o++){
-                n[o] = n[o] / norm;
-            }
-
-            x[i][j] += n[0];
-            y[i][j] += n[1];
-            z[i][j] += n[2];
 
 
         }
     }
 
-glBegin(GL_QUADS);
+    glBegin(GL_QUADS);
 
-for (int k = 0; k < reso; k++){
-    for (int l = 0; l < reso; l++){
+    for (int k = 0; k < reso; k++){
+        for (int l = 0; l < reso; l++){
 
 
-       glNormal3f(n[0],n[1],n[2]);
-        glVertex3f(x[l][k],y[l][k],z[l][k]);
-        glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
-        glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
-        glVertex3f(x[l+1][k],y[l+1][k],z[l+1][k]);
 
+            glNormal3f(n[0],n[1],n[2]);
+            glVertex3f(x[l][k],y[l][k],z[l][k]);
+            glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
+            glNormal3f(n[0],n[1],n[2]);
+            glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
+            glVertex3f(x[l+1][k],y[l+1][k],z[l+1][k]);
+
+        }
     }
-}
 
 
-/*
+    /*
     glBegin( GL_QUADS); // each 4 points define a polygon
     for( int i=0; i<reso; i++){
         glNormal3f( c[i], s[i], 0.0); // normal vector used for all consecutive points
@@ -304,9 +293,9 @@ void SetMaterialColor( int side, float r, float g, float b){
     }
     amb[3] = dif[3] = spe[3] = 1.0; // alpha component is always 1
     switch( side){
-        case 1:	mat = GL_FRONT; break;
-        case 2:	mat = GL_BACK; break;
-        default: mat = GL_FRONT_AND_BACK; break;
+    case 1:	mat = GL_FRONT; break;
+    case 2:	mat = GL_BACK; break;
+    default: mat = GL_FRONT_AND_BACK; break;
     }
     glMaterialfv( mat, GL_AMBIENT, amb); // define ambient, diffuse and specular components
     glMaterialfv( mat, GL_DIFFUSE, dif);
