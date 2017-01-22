@@ -221,17 +221,17 @@ void DrawTorus(float r, float R){
 
     for ( int i = 0; i <= reso; i++){
         for ( int j = 0; j <= reso; j++){
-            x[i][j] = cosf(s[j]) * (R + r * cosf(s[i]));
-            y[i][j] = sinf(s[j]) * (R + r * cosf(s[i]));
-            z[i][j] = r * sinf(s[i]);
+            x[i][j] = cosf(s[i]) * (R + r * cosf(s[j]));
+            y[i][j] = sinf(s[i]) * (R + r * cosf(s[j]));
+            z[i][j] = r * sinf(s[j]);
 
-            sx += -sinf(s[j]) * (R + r * cosf(s[i]));
-            sy += cosf(s[j]) * (R + r * cosf(s[i]));
+            sx += -sinf(s[i]) * (R + r * cosf(s[j]));
+            sy += cosf(s[i]) * (R + r * cosf(s[j]));
             sz += 0;
 
-            tx += cosf(s[j]) * r * -sinf(s[i]);
-            ty += sinf(s[j]) * r * -sinf(s[i]);
-            tz += r * cosf(s[i]);
+            tx += cosf(s[i]) * r * -sinf(s[j]);
+            ty += sinf(s[i]) * r * -sinf(s[j]);
+            tz += r * cosf(s[j]);
 
             n[0] = sy * tz - sz * ty;
             n[1] = sz * tx - sx * tz;
@@ -258,14 +258,16 @@ void DrawTorus(float r, float R){
 
 glBegin(GL_QUADS);
 
-for (int k = 0; k <= reso; k++){
-    for (int l = 0; l <= reso; l++){
+for (int k = 0; k < reso; k++){
+    for (int l = 0; l < reso; l++){
 
 
+       glNormal3f(n[0],n[1],n[2]);
+        glVertex3f(x[l][k],y[l][k],z[l][k]);
+        glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
+        glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
+        glVertex3f(x[l+1][k],y[l+1][k],z[l+1][k]);
 
-        glNormal3f(n[0],n[1],n[2]);
-        glVertex3f(x[k][l],y[k][l],z[k][l]);
-        glVertex3f(x[k+1][l+1],y[k+1][l+1],z[k+1][l+1]);
     }
 }
 
@@ -360,8 +362,8 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     alpha += 5;
 
     // define color: 1=front, 2=back, 3=both, followed by r, g, and b
-    SetMaterialColor( 1, 1.0, .2, .2);  // front color is red
-    SetMaterialColor( 2, 0.2, 0.2, 1.0); // back color is blue
+    SetMaterialColor( 2, 1.0, .2, .2);  // front color is red
+    SetMaterialColor( 1, 0.2, 0.2, 1.0); // back color is blue
 
     //draw a cylinder with default resolution
     //DrawCylinder();
