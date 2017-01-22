@@ -194,15 +194,15 @@ void DrawPyramid(){ // drawing a cylinder in OpenGL
 }
 
 void DrawTorus(float r, float R){
-    int reso = 20;
+    int reso = 19;
     float *s = new float[ reso+1];
     //vector < vector <float> > x;
     //vector < vector <float> > y;
     //vector < vector <float> > z;
 
-    float x[21][21];
-    float y[21][21];
-    float z[21][21];
+    float x[20][20];
+    float y[20][20];
+    float z[20][20];
 
 
     float sx = .0;
@@ -232,13 +232,26 @@ void DrawTorus(float r, float R){
             tx += cosf(s[i]) * r * -sinf(s[j]);
             ty += sinf(s[i]) * r * -sinf(s[j]);
             tz += r * cosf(s[j]);
-
+/*
             n[0] = sy * tz - sz * ty;
             n[1] = sz * tx - sx * tz;
             n[2] = sx * ty - sy * tx;
 
+            float calc = .0;
+            for (int m = 0; m < 3; m++){
+                calc += n[m] * n[m];
+            }
 
+            float norm = sqrtf(calc);
 
+            for (int o = 0; o < 3; o++){
+                n[o] = n[o] / norm;
+            }
+
+            x[i][j] += n[0];
+            y[i][j] += n[1];
+            z[i][j] += n[2];
+*/
 
         }
     }
@@ -253,7 +266,6 @@ void DrawTorus(float r, float R){
             glNormal3f(n[0],n[1],n[2]);
             glVertex3f(x[l][k],y[l][k],z[l][k]);
             glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
-            glNormal3f(n[0],n[1],n[2]);
             glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
             glVertex3f(x[l+1][k],y[l+1][k],z[l+1][k]);
 
