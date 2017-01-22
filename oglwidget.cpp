@@ -3,6 +3,7 @@
 #include <iostream>
 #include <QDebug>
 #include <complex>
+#include <deque>
 
 #define PI 3.14159265358979323846
 using namespace std;
@@ -194,15 +195,16 @@ void DrawPyramid(){ // drawing a cylinder in OpenGL
 }
 
 void DrawTorus(float r, float R){
-    int reso = 19;
+    int reso = 40;
     float *s = new float[ reso+1];
     //vector < vector <float> > x;
     //vector < vector <float> > y;
     //vector < vector <float> > z;
 
-    float x[20][20];
-    float y[20][20];
-    float z[20][20];
+    float x[reso + 1][reso + 1];
+    float y[reso + 1][reso + 1];
+    float z[reso + 1][reso + 1];
+    deque < float > norm_d;
 
 
     float sx = .0;
@@ -211,6 +213,7 @@ void DrawTorus(float r, float R){
     float tx = .0;
     float ty = .0;
     float tz = .0;
+
     float n[3];
 
 
@@ -232,11 +235,13 @@ void DrawTorus(float r, float R){
             tx += cosf(s[i]) * r * -sinf(s[j]);
             ty += sinf(s[i]) * r * -sinf(s[j]);
             tz += r * cosf(s[j]);
-/*
+
+
             n[0] = sy * tz - sz * ty;
             n[1] = sz * tx - sx * tz;
             n[2] = sx * ty - sy * tx;
 
+            
             float calc = .0;
             for (int m = 0; m < 3; m++){
                 calc += n[m] * n[m];
@@ -245,9 +250,9 @@ void DrawTorus(float r, float R){
             float norm = sqrtf(calc);
 
             for (int o = 0; o < 3; o++){
-                n[o] = n[o] / norm;
+                norm_d.push_back(n[o] / norm);
             }
-
+/*
             x[i][j] += n[0];
             y[i][j] += n[1];
             z[i][j] += n[2];
@@ -258,6 +263,17 @@ void DrawTorus(float r, float R){
 
     glBegin(GL_QUADS);
 
+    float norbert[3];
+
+    for (int m = 0; m < 3; m++){
+        n[m] = norm_d.front();
+        norm_d.pop_front();
+    }
+
+    for (int m = 0; m < 3; m++){
+        norbert[m] = n[m];
+    }
+
     for (int k = 0; k < reso; k++){
         for (int l = 0; l < reso; l++){
 
@@ -266,6 +282,17 @@ void DrawTorus(float r, float R){
             glNormal3f(n[0],n[1],n[2]);
             glVertex3f(x[l][k],y[l][k],z[l][k]);
             glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
+            if(!norm_d.empty()){
+                for (int m = 0; m < 3; m++){
+                    n[m] = norm_d.front();
+                    norm_d.pop_front();
+                }
+                glNormal3f(n[0],n[1],n[2]);
+            }
+            else{
+                glNormal3f(norbert[0],norbert[1],norbert[2]);
+            }
+
             glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
             glVertex3f(x[l+1][k],y[l+1][k],z[l+1][k]);
 
