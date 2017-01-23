@@ -157,9 +157,9 @@ void DrawPyramid(){ // drawing a cylinder in OpenGL
     //Boden
     glNormal3f(0,0,0);
     glVertex3f( lenghtOfQuad,0, lenghtOfQuad);    // Top Right Of The Quad (Bottom)
-    glVertex3f(-lenghtOfQuad,0, lenghtOfQuad);    // Top Left Of The Quad (Bottom)
-    glVertex3f(-lenghtOfQuad,0,-lenghtOfQuad);    // Bottom Left Of The Quad (Bottom)
     glVertex3f( lenghtOfQuad,0,-lenghtOfQuad);    // Bottom Right Of The Quad (Bottom)
+    glVertex3f(-lenghtOfQuad,0,-lenghtOfQuad);    // Bottom Left Of The Quad (Bottom)
+    glVertex3f(-lenghtOfQuad,0, lenghtOfQuad);    // Top Left Of The Quad (Bottom)
     glEnd(); // concludes GL_QUADS
 
     int lenghtOfTriangle = 1;
@@ -169,26 +169,26 @@ void DrawPyramid(){ // drawing a cylinder in OpenGL
 
     //hinten
     glNormal3f(0,.5,-.5);
-    glVertex3f(-lenghtOfTriangle,0,-lenghtOfTriangle);
     glVertex3f(lenghtOfTriangle,0,-lenghtOfTriangle);
+    glVertex3f(-lenghtOfTriangle,0,-lenghtOfTriangle);
     glVertex3f(0,lenghtOfTriangle,0);
 
     //rechts
     glNormal3f(.5,.5,0);
-    glVertex3f(lenghtOfTriangle,0,-lenghtOfTriangle);
     glVertex3f(lenghtOfTriangle,0,lenghtOfTriangle);
+    glVertex3f(lenghtOfTriangle,0,-lenghtOfTriangle);
     glVertex3f(0,lenghtOfTriangle,0);
 
     //vorne
     glNormal3f(0,.5,.5);
-    glVertex3f(lenghtOfTriangle,0,lenghtOfTriangle);
     glVertex3f(-lenghtOfTriangle,0,lenghtOfTriangle);
+    glVertex3f(lenghtOfTriangle,0,lenghtOfTriangle);
     glVertex3f(0,lenghtOfTriangle,0);
 
     //links
     glNormal3f(-.5,.5,0);
-    glVertex3f(-lenghtOfTriangle,0,lenghtOfTriangle);
     glVertex3f(-lenghtOfTriangle,0,-lenghtOfTriangle);
+    glVertex3f(-lenghtOfTriangle,0,lenghtOfTriangle);
     glVertex3f(0,lenghtOfTriangle,0);
     glEnd();
 
@@ -244,7 +244,7 @@ void DrawTorus(float r, float R){
             n[0] = sy * tz - sz * ty;
             n[1] = sz * tx - sx * tz;
             n[2] = sx * ty - sy * tx;
-
+/*
 
             float calc = .0;
             for (int m = 0; m < 3; m++){
@@ -252,10 +252,10 @@ void DrawTorus(float r, float R){
             }
 
             float norm = sqrtf(calc);
-
-            n_x[i][j] = n[0] / norm;
-            n_y[i][j] = n[1] / norm;
-            n_z[i][j] = n[2] / norm;
+*/
+            n_x[i][j] = n[0];// norm;
+            n_y[i][j] = n[1];// norm;
+            n_z[i][j] = n[2];// norm;
 
 /*
             x[i][j] += n[0];
@@ -278,12 +278,12 @@ void DrawTorus(float r, float R){
         for (int l = 0; l < reso; l++){
             glNormal3f(n_x[l][k],n_y[l][k],n_z[l][k]);
             glVertex3f(x[l][k],y[l][k],z[l][k]);
-            glNormal3f(n_x[l][k+1],n_y[l][k+1],n_z[l][k+1]);
-            glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
-            glNormal3f(n_x[l+1][k+1],n_y[l+1][k+1],n_z[l+1][k+1]);
-            glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
             glNormal3f(n_x[l+1][k],n_y[l+1][k],n_z[l+1][k]);
             glVertex3f(x[l+1][k],y[l+1][k],z[l+1][k]);
+            glNormal3f(n_x[l+1][k+1],n_y[l+1][k+1],n_z[l+1][k+1]);
+            glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
+            glNormal3f(n_x[l][k+1],n_y[l][k+1],n_z[l][k+1]);
+            glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
 
         }
     }
@@ -343,7 +343,7 @@ void DrawSphere(float r, float R){
             n[0] = sy * tz - sz * ty;
             n[1] = sz * tx - sx * tz;
             n[2] = sx * ty - sy * tx;
-
+/*
 
             float calc = .0;
             for (int m = 0; m < 3; m++){
@@ -351,10 +351,10 @@ void DrawSphere(float r, float R){
             }
 
             float norm = sqrtf(calc);
-
-            n_x[i][j] = n[0] / norm;
-            n_y[i][j] = n[1] / norm;
-            n_z[i][j] = n[2] / norm;
+*/
+            n_x[i][j] = n[0];// norm;
+            n_y[i][j] = n[1];// norm;
+            n_z[i][j] = n[2];// norm;
 
 
 
@@ -367,13 +367,12 @@ void DrawSphere(float r, float R){
         for (int l = 0; l < reso / 2; l++){
             glNormal3f(n_x[l][k],n_y[l][k],n_z[l][k]);
             glVertex3f(x[l][k],y[l][k],z[l][k]);
-            glNormal3f(n_x[l][k+1],n_y[l][k+1],n_z[l][k+1]);
-            glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
-            glNormal3f(n_x[l+1][k+1],n_y[l+1][k+1],n_z[l+1][k+1]);
-            glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
             glNormal3f(n_x[l+1][k],n_y[l+1][k],n_z[l+1][k]);
             glVertex3f(x[l+1][k],y[l+1][k],z[l+1][k]);
-
+            glNormal3f(n_x[l+1][k+1],n_y[l+1][k+1],n_z[l+1][k+1]);
+            glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
+            glNormal3f(n_x[l][k+1],n_y[l][k+1],n_z[l][k+1]);
+            glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
         }
     }
 
@@ -382,12 +381,12 @@ void DrawSphere(float r, float R){
         for (int l = reso / 2; l < reso; l++){
             glNormal3f(n_x[l][k],n_y[l][k],n_z[l][k]);
             glVertex3f(x[l][k],y[l][k],z[l][k]);
-            glNormal3f(n_x[l][k+1],n_y[l][k+1],n_z[l][k+1]);
-            glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
-            glNormal3f(n_x[l+1][k+1],n_y[l+1][k+1],n_z[l+1][k+1]);
-            glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
             glNormal3f(n_x[l+1][k],n_y[l+1][k],n_z[l+1][k]);
             glVertex3f(x[l+1][k],y[l+1][k],z[l+1][k]);
+            glNormal3f(n_x[l+1][k+1],n_y[l+1][k+1],n_z[l+1][k+1]);
+            glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
+            glNormal3f(n_x[l][k+1],n_y[l][k+1],n_z[l][k+1]);
+            glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
 
         }
     }
@@ -397,12 +396,12 @@ void DrawSphere(float r, float R){
         for (int l = 0; l < reso / 2; l++){
             glNormal3f(n_x[l][k],n_y[l][k],n_z[l][k]);
             glVertex3f(x[l][k],y[l][k],z[l][k]);
-            glNormal3f(n_x[l][k+1],n_y[l][k+1],n_z[l][k+1]);
-            glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
-            glNormal3f(n_x[l+1][k+1],n_y[l+1][k+1],n_z[l+1][k+1]);
-            glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
             glNormal3f(n_x[l+1][k],n_y[l+1][k],n_z[l+1][k]);
             glVertex3f(x[l+1][k],y[l+1][k],z[l+1][k]);
+            glNormal3f(n_x[l+1][k+1],n_y[l+1][k+1],n_z[l+1][k+1]);
+            glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
+            glNormal3f(n_x[l][k+1],n_y[l][k+1],n_z[l][k+1]);
+            glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
 
         }
     }
@@ -412,12 +411,12 @@ void DrawSphere(float r, float R){
         for (int l = reso / 2; l < reso; l++){
             glNormal3f(n_x[l][k],n_y[l][k],n_z[l][k]);
             glVertex3f(x[l][k],y[l][k],z[l][k]);
-            glNormal3f(n_x[l][k+1],n_y[l][k+1],n_z[l][k+1]);
-            glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
-            glNormal3f(n_x[l+1][k+1],n_y[l+1][k+1],n_z[l+1][k+1]);
-            glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
             glNormal3f(n_x[l+1][k],n_y[l+1][k],n_z[l+1][k]);
             glVertex3f(x[l+1][k],y[l+1][k],z[l+1][k]);
+            glNormal3f(n_x[l+1][k+1],n_y[l+1][k+1],n_z[l+1][k+1]);
+            glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
+            glNormal3f(n_x[l][k+1],n_y[l][k+1],n_z[l][k+1]);
+            glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
 
         }
     }
@@ -514,8 +513,14 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glRotated( beta, 0, 3, 1);     // continuous rotation
     beta += 5;
     //SetMaterialColor( 2, 1.0, .2, .2);
-    DrawSphere(5,0);
+    DrawSphere(3,0);
     //DrawPyramid();
+
+    glTranslated( 0 ,5 ,-5.0);     // Move 10 units backwards in z, since camera is at origin
+    glScaled( 5.0, 5.0, 5.0);       // scale objects
+    glRotated( beta, 5, 3, 1);     // continuous rotation
+    beta += 5;
+    DrawPyramid();
 
     glTranslated( 0 ,0 ,-5.0);     // Move 10 units backwards in z, since camera is at origin
     glScaled( 1.0, 1.0, 1.0);       // scale objects
