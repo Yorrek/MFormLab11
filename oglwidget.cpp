@@ -107,50 +107,40 @@ void DrawCube(){ // drawing a cylinder in OpenGL
 
     glBegin( GL_QUADS);
 
-
-    glNormal3f(-lenghtOfCube, lenghtOfCube,-lenghtOfCube);
+//Z ist die nach vorne gerichtetet Seite.
+    glNormal3f(0,1,0);//oben
     glVertex3f( lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Right Of The Quad (Top)
     glVertex3f(-lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Left Of The Quad (Top)
-    glNormal3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);
     glVertex3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Bottom Left Of The Quad (Top)
     glVertex3f( lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Bottom Right Of The Quad (Top)
 
-
-    glNormal3f(-lenghtOfCube, -lenghtOfCube, lenghtOfCube);
+    glNormal3f(0,-1,0);//unten
     glVertex3f( lenghtOfCube, -lenghtOfCube, lenghtOfCube);    // Top Right Of The Quad (Bottom)
     glVertex3f(-lenghtOfCube, -lenghtOfCube, lenghtOfCube);    // Top Left Of The Quad (Bottom)
-    glNormal3f(-lenghtOfCube, -lenghtOfCube,-lenghtOfCube);
     glVertex3f(-lenghtOfCube, -lenghtOfCube,-lenghtOfCube);    // Bottom Left Of The Quad (Bottom)
     glVertex3f( lenghtOfCube, -lenghtOfCube,-lenghtOfCube);    // Bottom Right Of The Quad (Bottom)
 
-
-    glNormal3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);
+    glNormal3f(0,0,1);//vorne
     glVertex3f( lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Right Of The Quad (Front)
     glVertex3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Left Of The Quad (Front)
-    glNormal3f(-lenghtOfCube,-lenghtOfCube, lenghtOfCube);
     glVertex3f(-lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Left Of The Quad (Front)
     glVertex3f( lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Right Of The Quad (Front)
 
-
-    glNormal3f(-lenghtOfCube,-lenghtOfCube, -lenghtOfCube);
+    glNormal3f(0,0,-1);//hinten
     glVertex3f( lenghtOfCube,-lenghtOfCube, -lenghtOfCube);    // Top Right Of The Quad (Back)
     glVertex3f(-lenghtOfCube,-lenghtOfCube, -lenghtOfCube);    // Top Left Of The Quad (Back)
-    glNormal3f(-lenghtOfCube, lenghtOfCube, -lenghtOfCube);
     glVertex3f(-lenghtOfCube, lenghtOfCube, -lenghtOfCube);    // Bottom Left Of The Quad (Back)
     glVertex3f( lenghtOfCube, lenghtOfCube, -lenghtOfCube);    // Bottom Right Of The Quad (Back)
 
-
-    glNormal3f(-lenghtOfCube, lenghtOfCube,-lenghtOfCube);
+    glNormal3f(-1,0,0);//links
     glVertex3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Right Of The Quad (Left)
     glVertex3f(-lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Left Of The Quad (Left)
-    glNormal3f(-lenghtOfCube,-lenghtOfCube,-lenghtOfCube);
     glVertex3f(-lenghtOfCube,-lenghtOfCube,-lenghtOfCube);    // Bottom Left Of The Quad (Left)
     glVertex3f(-lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Right Of The Quad (Left)
 
-    glNormal3f( lenghtOfCube, lenghtOfCube, lenghtOfCube);
+    glNormal3f(1,0,0);//rechts
     glVertex3f( lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Right Of The Quad (Right)
     glVertex3f( lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Left Of The Quad (Right)
-    glNormal3f( lenghtOfCube,-lenghtOfCube, lenghtOfCube);
     glVertex3f( lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Left Of The Quad (Right)
     glVertex3f( lenghtOfCube,-lenghtOfCube,-lenghtOfCube);    // Bottom Right Of The Quad (Right) - See more at: http://www.codemiles.com/c-opengl-examples/draw-3d-cube-using-opengl-t9018.html#sthash.179MIp09.dpuf
     glEnd(); // concludes GL_QUADS
@@ -384,7 +374,8 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
 
     //draw a cylinder with default resolution
     //DrawCylinder();
-    DrawTorus(2,5);
+    //DrawTorus(2,5);
+    DrawCube();
 
     glTranslated( 0 ,0 ,-5.0);     // Move 10 units backwards in z, since camera is at origin
     glScaled( 1.0, 1.0, 1.0);       // scale objects
@@ -397,8 +388,8 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glScaled( 1.0, 1.0, 1.0);       // scale objects
     glRotated( gamma3, 0, 3, 1);     // continuous rotation
     gamma3 += 5;
-    SetMaterialColor(1, 1.0, .2, .2);
-    SetMaterialColor( 2, 0.2, 0.2, 1.0);
+    //SetMaterialColor(1, 1.0, .2, .2);
+    //SetMaterialColor( 2, 0.2, 0.2, 1.0);
     //DrawCube();
     // make it appear (before this, it's hidden in the rear buffer)
     glFlush();
