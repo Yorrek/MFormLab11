@@ -74,6 +74,7 @@ void DrawCylinder( int reso = 16){ // drawing a cylinder in OpenGL
     glEnd(); // concludes GL_QUADS
 
     glBegin(GL_TRIANGLE_FAN);
+    glNormal3f(0, 0, 0);
     glVertex3f(0, 0, 0); // center of circle
     for( int j = 0; j <= reso;j++) {
         glVertex3f(
@@ -85,6 +86,7 @@ void DrawCylinder( int reso = 16){ // drawing a cylinder in OpenGL
     }
     glEnd();
     glBegin(GL_TRIANGLE_FAN);
+    glNormal3f(0, 0, 3);
     glVertex3f(0, 0, 3); // center of circle
     for( int j = 0; j <= reso;j++) {
         glVertex3f(
@@ -381,8 +383,8 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     SetMaterialColor( 1, 0.2, 0.2, 1.0); // back color is blue
 
     //draw a cylinder with default resolution
-    //DrawCylinder();
-    //DrawTorus(2,5);
+    DrawCylinder();
+    DrawTorus(2,5);
     DrawCube();
 
     glTranslated( 0 ,0 ,-5.0);     // Move 10 units backwards in z, since camera is at origin
@@ -390,7 +392,7 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glRotated( beta, 0, 3, 1);     // continuous rotation
     beta += 5;
     //SetMaterialColor( 2, 1.0, .2, .2);
-    //DrawPyramid();
+    DrawPyramid();
 
     glTranslated( 0 ,0 ,-5.0);     // Move 10 units backwards in z, since camera is at origin
     glScaled( 1.0, 1.0, 1.0);       // scale objects
