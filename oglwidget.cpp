@@ -232,13 +232,13 @@ void DrawTorus(float r, float R){
             y[i][j] = sinf(s[i]) * (R + r * cosf(s[j]));
             z[i][j] = r * sinf(s[j]);
 
-            sx += -sinf(s[i]) * (R + r * cosf(s[j]));
-            sy += cosf(s[i]) * (R + r * cosf(s[j]));
-            sz += 0;
+            sx = -sinf(s[i]) * (R + r * cosf(s[j]));
+            sy = cosf(s[i]) * (R + r * cosf(s[j]));
+            sz = 0;
 
-            tx += cosf(s[i]) * r * -sinf(s[j]);
-            ty += sinf(s[i]) * r * -sinf(s[j]);
-            tz += r * cosf(s[j]);
+            tx = cosf(s[i]) * r * -sinf(s[j]);
+            ty = sinf(s[i]) * r * -sinf(s[j]);
+            tz = r * cosf(s[j]);
 
 
             n[0] = sy * tz - sz * ty;
