@@ -151,7 +151,9 @@ void DrawPyramid(){ // drawing a cylinder in OpenGL
     int lenghtOfQuad = 1;
 
     glBegin( GL_QUADS); // each 4 points define a polygon
-    glNormal3f(0,1.0f,0);
+
+    //Boden
+    glNormal3f(0,0,0);
     glVertex3f( lenghtOfQuad,0, lenghtOfQuad);    // Top Right Of The Quad (Bottom)
     glVertex3f(-lenghtOfQuad,0, lenghtOfQuad);    // Top Left Of The Quad (Bottom)
     glVertex3f(-lenghtOfQuad,0,-lenghtOfQuad);    // Bottom Left Of The Quad (Bottom)
@@ -160,23 +162,29 @@ void DrawPyramid(){ // drawing a cylinder in OpenGL
 
     int lenghtOfTriangle = 1;
 
+
     glBegin( GL_TRIANGLES);
-    glNormal3f(lenghtOfTriangle,0.0,-lenghtOfTriangle);
+
+    //hinten
+    glNormal3f(0,.5,-.5);
     glVertex3f(-lenghtOfTriangle,0,-lenghtOfTriangle);
     glVertex3f(lenghtOfTriangle,0,-lenghtOfTriangle);
     glVertex3f(0,lenghtOfTriangle,0);
 
-    glNormal3f(lenghtOfTriangle,0.0,lenghtOfTriangle);
+    //rechts
+    glNormal3f(.5,.5,0);
     glVertex3f(lenghtOfTriangle,0,-lenghtOfTriangle);
     glVertex3f(lenghtOfTriangle,0,lenghtOfTriangle);
     glVertex3f(0,lenghtOfTriangle,0);
 
-    glNormal3f(-lenghtOfTriangle,0.0,lenghtOfTriangle);
+    //vorne
+    glNormal3f(0,.5,.5);
     glVertex3f(lenghtOfTriangle,0,lenghtOfTriangle);
     glVertex3f(-lenghtOfTriangle,0,lenghtOfTriangle);
     glVertex3f(0,lenghtOfTriangle,0);
 
-    glNormal3f(-lenghtOfTriangle,0.0,-lenghtOfTriangle);
+    //links
+    glNormal3f(-.5,.5,0);
     glVertex3f(-lenghtOfTriangle,0,lenghtOfTriangle);
     glVertex3f(-lenghtOfTriangle,0,-lenghtOfTriangle);
     glVertex3f(0,lenghtOfTriangle,0);
