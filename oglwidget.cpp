@@ -428,6 +428,20 @@ void DrawSphere(float r, float R){
     delete[] s; // de-allocate space
 }
 
+void drawMoebius(){
+    int reso = 20;
+    float *a = new float[reso + 1];
+    float *r = new float[reso + 1];
+
+    for (int i = 0; i <= reso; i++){
+        a[i] = doublePI / reso * i;
+
+    }
+
+    delete[] a;
+    delete[] r;
+}
+
 // define material color properties for front and back side
 void SetMaterialColor( int side, float r, float g, float b){
     float	amb[4], dif[4], spe[4];
