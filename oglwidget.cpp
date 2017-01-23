@@ -501,8 +501,8 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     alpha += 5;
 
     // define color: 1=front, 2=back, 3=both, followed by r, g, and b
-    SetMaterialColor( 2, 1.0, .2, .2);  // front color is red
-    SetMaterialColor( 1, 0.2, 0.2, 1.0); // back color is blue
+    SetMaterialColor( 1, 1.0, .2, .2);  // front color is red
+    SetMaterialColor( 2, 0.2, 0.2, 1.0); // back color is blue
 
     //draw a cylinder with default resolution
     DrawCylinder();
