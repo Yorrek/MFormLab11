@@ -429,8 +429,8 @@ void DrawSphere(float r, float R){
 }
 
 void DrawMoebius(){
-    int reso = 20;
-    float *a = new float[reso + 1];
+    int reso = 50;
+    deque < float > a;
     vector < float > r;
 
     float x[reso + 1][reso + 1];
@@ -438,7 +438,7 @@ void DrawMoebius(){
     float z[reso + 1][reso + 1];
 
     for (int i = 0; i <= reso; i++){
-        a[i] = doublePI / reso * i;
+        a.push_back(doublePI / reso * i);
     }
 
     for (float i = -1.; i <= 1.1; i += 2. / (float)reso){
@@ -453,9 +453,9 @@ void DrawMoebius(){
 
     for (int i = 0; i <= reso; i++){
         for ( int j = 0; j <= reso; j++){
-            x[i][j] = cosf(a[i]) * (1 + r[j] * cosf(a[i] / 2));
-            y[i][j] = sinf(a[i]) * (1 + r[j] * cosf(a[i] / 2));
-            z[i][j] = r[j] / 2 * sinf(a[i] / 2);
+            x[i][j] = cosf(a[i]) * (1 + (r[j]/2) * cosf(a[i] / 2));
+            y[i][j] = sinf(a[i]) * (1 + (r[j]/2) * cosf(a[i] / 2));
+            z[i][j] = (r[j] / 2) * sinf(a[i] / 2);
         }
     }
 
@@ -469,12 +469,13 @@ void DrawMoebius(){
             glVertex3f(x[j][i+1],y[j][i+1],z[j][i+1]);
         }
     }
+
     glEnd();
+    float bla = a.front();
+    a.pop_front();
+    a.push_back(bla);
 
 
-
-
-    delete[] a;
 }
 
 // define material color properties for front and back side
