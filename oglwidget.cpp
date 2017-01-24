@@ -428,18 +428,53 @@ void DrawSphere(float r, float R){
     delete[] s; // de-allocate space
 }
 
-void drawMoebius(){
+void DrawMoebius(){
     int reso = 20;
     float *a = new float[reso + 1];
-    float *r = new float[reso + 1];
+    vector < float > r;
+
+    float x[reso + 1][reso + 1];
+    float y[reso + 1][reso + 1];
+    float z[reso + 1][reso + 1];
 
     for (int i = 0; i <= reso; i++){
         a[i] = doublePI / reso * i;
-
     }
 
+    for (float i = -1.; i <= 1.1; i += 2. / (float)reso){
+        if ( i >= float(1)){
+            r.push_back(float(1));
+            i = 1.2;
+        }
+        else{
+            r.push_back(i);
+        }
+    }
+
+    for (int i = 0; i <= reso; i++){
+        for ( int j = 0; j <= reso; j++){
+            x[i][j] = cosf(a[i]) * (1 + r[j] * cosf(a[i] / 2));
+            y[i][j] = sinf(a[i]) * (1 + r[j] * cosf(a[i] / 2));
+            z[i][j] = r[j] / 2 * sinf(a[i] / 2);
+        }
+    }
+
+    glBegin(GL_QUADS);
+    for (int i = 0; i < reso; i++){
+        for ( int j = 0; j < reso; j++){
+            glVertex3f(x[j][i],y[j][i],z[j][i]);
+            glVertex3f(x[j+1][i],y[j+1][i],z[j+1][i]);
+
+            glVertex3f(x[j+1][i+1],y[j+1][i+1],z[j+1][i+1]);
+            glVertex3f(x[j][i+1],y[j][i+1],z[j][i+1]);
+        }
+    }
+    glEnd();
+
+
+
+
     delete[] a;
-    delete[] r;
 }
 
 // define material color properties for front and back side
@@ -509,7 +544,7 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glMatrixMode( GL_MODELVIEW);
     glLoadIdentity();				// Reset The Current Modelview Matrix
     glTranslated( 0 ,0 ,-10.0);     // Move 10 units backwards in z, since camera is at origin
-    glScaled( 1.0, 1.0, 1.0);       // scale objects
+    glScaled( 3.0, 3.0, 3.0);       // scale objects
     glRotated( alpha, 0, 3, 1);     // continuous rotation
     alpha += 5;
 
@@ -518,23 +553,26 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     SetMaterialColor( 2, 0.2, 0.2, 1.0); // back color is blue
 
     //draw a cylinder with default resolution
+
+    DrawMoebius();
+    /*
     DrawCylinder();
     DrawTorus(2,5);
     DrawCube();
-
+*/
     glTranslated( 0 ,0 ,-5.0);     // Move 10 units backwards in z, since camera is at origin
     glScaled( 1.0, 1.0, 1.0);       // scale objects
     glRotated( beta, 0, 3, 1);     // continuous rotation
     beta += 5;
     //SetMaterialColor( 2, 1.0, .2, .2);
-    DrawSphere(3,0);
+  //  DrawSphere(3,0);
     //DrawPyramid();
 
     glTranslated( 0 ,5 ,-5.0);     // Move 10 units backwards in z, since camera is at origin
     glScaled( 5.0, 5.0, 5.0);       // scale objects
     glRotated( beta, 5, 3, 1);     // continuous rotation
     beta += 5;
-    DrawPyramid();
+   // DrawPyramid();
 
     glTranslated( 0 ,0 ,-5.0);     // Move 10 units backwards in z, since camera is at origin
     glScaled( 1.0, 1.0, 1.0);       // scale objects
