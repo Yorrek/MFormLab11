@@ -11,7 +11,7 @@ using namespace std;
 static double alpha = 45.0; // rotation angle
 static double beta = 30.0; // rotation angle
 static double gamma3 = 85.0; // rotation angle
-static float doublePI = 2 * PI;
+static float doublePI = 2 * PI; // double pi
 
 
 // initialize Open GL lighting and projection matrix
@@ -58,7 +58,6 @@ void DrawCylinder( int reso = 16){ // drawing a cylinder in OpenGL
     for( int i=0; i<=reso; i++){ // compute x and y coordinates of citcle
         c[i] = cos( 2.0 * PI * i / reso );
         s[i] = sin( 2.0 * PI * i / reso );
-        //cout << i << " " << c[i] << endl;
     }
 
     glBegin( GL_QUADS); // each 4 points define a polygon
@@ -73,10 +72,10 @@ void DrawCylinder( int reso = 16){ // drawing a cylinder in OpenGL
     }
     glEnd(); // concludes GL_QUADS
 
-    glBegin(GL_TRIANGLE_FAN);
-    glNormal3f(0, 0, 0);
+    glBegin(GL_TRIANGLE_FAN); // connected triangles for the ground
+    glNormal3f(0, 0, 0); //normal vector used for center of circle
     glVertex3f(0, 0, 0); // center of circle
-    for( int j = 0; j <= reso;j++) {
+    for( int j = 0; j <= reso;j++) { // compute x and y coordinates of circle
         glVertex3f(
                     sin( 2.0 * PI * j / reso ),
                     cos( 2.0 * PI * j / reso ),
@@ -85,10 +84,10 @@ void DrawCylinder( int reso = 16){ // drawing a cylinder in OpenGL
 
     }
     glEnd();
-    glBegin(GL_TRIANGLE_FAN);
-    glNormal3f(0, 0, 3);
+    glBegin(GL_TRIANGLE_FAN); // connect triangles for the top
+    glNormal3f(0, 0, 3); // normal vector used for center of circle
     glVertex3f(0, 0, 3); // center of circle
-    for( int j = 0; j <= reso;j++) {
+    for( int j = 0; j <= reso;j++) { // compute x and y coordinates of circle
         glVertex3f(
                     cos( 2.0 * PI * j / reso ),
                     sin( 2.0 * PI * j / reso ),
@@ -103,48 +102,48 @@ void DrawCylinder( int reso = 16){ // drawing a cylinder in OpenGL
 }
 
 
-void DrawCube(){ // drawing a cylinder in OpenGL
+void DrawCube(){ // drawing a cube in OpenGL
 
-    int lenghtOfCube = 1;
+    int halfLengthOfCube = 1; //  half length of the cube
 
-    glBegin( GL_QUADS);
+    glBegin( GL_QUADS); //draws quads
 
     //Z ist die nach vorne gerichtetet Seite.
-    glNormal3f(0,1,0);//oben
-    glVertex3f( lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Right Of The Quad (Top)
-    glVertex3f(-lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Left Of The Quad (Top)
-    glVertex3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Bottom Left Of The Quad (Top)
-    glVertex3f( lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Bottom Right Of The Quad (Top)
+    glNormal3f(0,1,0);//top
+    glVertex3f( halfLengthOfCube, halfLengthOfCube,-halfLengthOfCube);    // Top Right Of The Quad (Top)
+    glVertex3f(-halfLengthOfCube, halfLengthOfCube,-halfLengthOfCube);    // Top Left Of The Quad (Top)
+    glVertex3f(-halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);    // Bottom Left Of The Quad (Top)
+    glVertex3f( halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);    // Bottom Right Of The Quad (Top)
 
-    glNormal3f(0,-1,0);//unten
-    glVertex3f( lenghtOfCube, -lenghtOfCube, lenghtOfCube);    // Top Right Of The Quad (Bottom)
-    glVertex3f(-lenghtOfCube, -lenghtOfCube, lenghtOfCube);    // Top Left Of The Quad (Bottom)
-    glVertex3f(-lenghtOfCube, -lenghtOfCube,-lenghtOfCube);    // Bottom Left Of The Quad (Bottom)
-    glVertex3f( lenghtOfCube, -lenghtOfCube,-lenghtOfCube);    // Bottom Right Of The Quad (Bottom)
+    glNormal3f(0,-1,0);//bottom
+    glVertex3f( halfLengthOfCube, -halfLengthOfCube, halfLengthOfCube);    // Top Right Of The Quad (Bottom)
+    glVertex3f(-halfLengthOfCube, -halfLengthOfCube, halfLengthOfCube);    // Top Left Of The Quad (Bottom)
+    glVertex3f(-halfLengthOfCube, -halfLengthOfCube,-halfLengthOfCube);    // Bottom Left Of The Quad (Bottom)
+    glVertex3f( halfLengthOfCube, -halfLengthOfCube,-halfLengthOfCube);    // Bottom Right Of The Quad (Bottom)
 
-    glNormal3f(0,0,1);//vorne
-    glVertex3f( lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Right Of The Quad (Front)
-    glVertex3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Left Of The Quad (Front)
-    glVertex3f(-lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Left Of The Quad (Front)
-    glVertex3f( lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Right Of The Quad (Front)
+    glNormal3f(0,0,1);//front
+    glVertex3f( halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);    // Top Right Of The Quad (Front)
+    glVertex3f(-halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);    // Top Left Of The Quad (Front)
+    glVertex3f(-halfLengthOfCube,-halfLengthOfCube, halfLengthOfCube);    // Bottom Left Of The Quad (Front)
+    glVertex3f( halfLengthOfCube,-halfLengthOfCube, halfLengthOfCube);    // Bottom Right Of The Quad (Front)
 
-    glNormal3f(0,0,-1);//hinten
-    glVertex3f( lenghtOfCube,-lenghtOfCube, -lenghtOfCube);    // Top Right Of The Quad (Back)
-    glVertex3f(-lenghtOfCube,-lenghtOfCube, -lenghtOfCube);    // Top Left Of The Quad (Back)
-    glVertex3f(-lenghtOfCube, lenghtOfCube, -lenghtOfCube);    // Bottom Left Of The Quad (Back)
-    glVertex3f( lenghtOfCube, lenghtOfCube, -lenghtOfCube);    // Bottom Right Of The Quad (Back)
+    glNormal3f(0,0,-1);//back
+    glVertex3f( halfLengthOfCube,-halfLengthOfCube, -halfLengthOfCube);    // Top Right Of The Quad (Back)
+    glVertex3f(-halfLengthOfCube,-halfLengthOfCube, -halfLengthOfCube);    // Top Left Of The Quad (Back)
+    glVertex3f(-halfLengthOfCube, halfLengthOfCube, -halfLengthOfCube);    // Bottom Left Of The Quad (Back)
+    glVertex3f( halfLengthOfCube, halfLengthOfCube, -halfLengthOfCube);    // Bottom Right Of The Quad (Back)
 
-    glNormal3f(-1,0,0);//links
-    glVertex3f(-lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Right Of The Quad (Left)
-    glVertex3f(-lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Left Of The Quad (Left)
-    glVertex3f(-lenghtOfCube,-lenghtOfCube,-lenghtOfCube);    // Bottom Left Of The Quad (Left)
-    glVertex3f(-lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Right Of The Quad (Left)
+    glNormal3f(-1,0,0);//left
+    glVertex3f(-halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);    // Top Right Of The Quad (Left)
+    glVertex3f(-halfLengthOfCube, halfLengthOfCube,-halfLengthOfCube);    // Top Left Of The Quad (Left)
+    glVertex3f(-halfLengthOfCube,-halfLengthOfCube,-halfLengthOfCube);    // Bottom Left Of The Quad (Left)
+    glVertex3f(-halfLengthOfCube,-halfLengthOfCube, halfLengthOfCube);    // Bottom Right Of The Quad (Left)
 
-    glNormal3f(1,0,0);//rechts
-    glVertex3f( lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Right Of The Quad (Right)
-    glVertex3f( lenghtOfCube, lenghtOfCube, lenghtOfCube);    // Top Left Of The Quad (Right)
-    glVertex3f( lenghtOfCube,-lenghtOfCube, lenghtOfCube);    // Bottom Left Of The Quad (Right)
-    glVertex3f( lenghtOfCube,-lenghtOfCube,-lenghtOfCube);    // Bottom Right Of The Quad (Right) - See more at: http://www.codemiles.com/c-opengl-examples/draw-3d-cube-using-opengl-t9018.html#sthash.179MIp09.dpuf
+    glNormal3f(1,0,0);//right
+    glVertex3f( halfLengthOfCube, halfLengthOfCube,-halfLengthOfCube);    // Top Right Of The Quad (Right)
+    glVertex3f( halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);    // Top Left Of The Quad (Right)
+    glVertex3f( halfLengthOfCube,-halfLengthOfCube, halfLengthOfCube);    // Bottom Left Of The Quad (Right)
+    glVertex3f( halfLengthOfCube,-halfLengthOfCube,-halfLengthOfCube);    // Bottom Right Of The Quad (Right) - See more at: http://www.codemiles.com/c-opengl-examples/draw-3d-cube-using-opengl-t9018.html#sthash.179MIp09.dpuf
     glEnd(); // concludes GL_QUADS
 }
 
@@ -576,15 +575,15 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glScaled( 3.5, 3.5, 3.5);
     glRotated(beta, 0, 1, 1);
     beta+=5;
-    DrawMoebius();
+    DrawCube();
     glPopMatrix();
 
     /*
     //Cube
+    DrawMoebius();
     glPushMatrix();
     glTranslated(-2.0,-2.0,-2.0);
     glScaled( 1.5, 1.5, 1.5);
-    DrawCube();
     glRotated(alpha, 0, 1, 1);
     glPopMatrix();
 
