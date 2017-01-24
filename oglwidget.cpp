@@ -9,7 +9,7 @@
 using namespace std;
 
 static double alpha = 45.0; // rotation angle
-static double beta = 15.0; // rotation angle
+static double beta = 30.0; // rotation angle
 static double gamma3 = 85.0; // rotation angle
 static float doublePI = 2 * PI;
 
@@ -109,7 +109,7 @@ void DrawCube(){ // drawing a cylinder in OpenGL
 
     glBegin( GL_QUADS);
 
-//Z ist die nach vorne gerichtetet Seite.
+    //Z ist die nach vorne gerichtetet Seite.
     glNormal3f(0,1,0);//oben
     glVertex3f( lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Right Of The Quad (Top)
     glVertex3f(-lenghtOfCube, lenghtOfCube,-lenghtOfCube);    // Top Left Of The Quad (Top)
@@ -244,7 +244,7 @@ void DrawTorus(float r, float R){
             n[0] = sy * tz - sz * ty;
             n[1] = sz * tx - sx * tz;
             n[2] = sx * ty - sy * tx;
-/*
+            /*
 
             float calc = .0;
             for (int m = 0; m < 3; m++){
@@ -257,7 +257,7 @@ void DrawTorus(float r, float R){
             n_y[i][j] = n[1];// norm;
             n_z[i][j] = n[2];// norm;
 
-/*
+            /*
             x[i][j] += n[0];
             y[i][j] += n[1];
             z[i][j] += n[2];
@@ -343,7 +343,7 @@ void DrawSphere(float r, float R){
             n[0] = sy * tz - sz * ty;
             n[1] = sz * tx - sx * tz;
             n[2] = sx * ty - sy * tx;
-/*
+            /*
 
             float calc = .0;
             for (int m = 0; m < 3; m++){
@@ -545,44 +545,66 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glMatrixMode( GL_MODELVIEW);
     glLoadIdentity();				// Reset The Current Modelview Matrix
     glTranslated( 0 ,0 ,-10.0);     // Move 10 units backwards in z, since camera is at origin
-    glScaled( 3.0, 3.0, 3.0);       // scale objects
+    glScaled( 1.0, 1.0, 1.0);       // scale objects
     glRotated( alpha, 0, 3, 1);     // continuous rotation
-    alpha += 5;
+    alpha += 5; // Speed of rotation
 
     // define color: 1=front, 2=back, 3=both, followed by r, g, and b
     SetMaterialColor( 1, 1.0, .2, .2);  // front color is red
     SetMaterialColor( 2, 0.2, 0.2, 1.0); // back color is blue
 
     //draw a cylinder with default resolution
+    glPushMatrix();
+    //DrawCylinder();
+    glPopMatrix();
 
+    glRotated(-90,0,0,0);
+
+    //Torus
+    glPushMatrix();
+    glTranslated(.0,.0,-1.5);
+    glScaled( 1.0, 1.0, 1.0);
+    DrawTorus(1,4);
+    glRotated(alpha, 0, 1, 1);
+    glPopMatrix();
+
+    glRotated(-90,0,0,0);
+
+    //Mobius Strip
+    glPushMatrix();
+    glTranslated(3.0,3.0,3.0);
+    glScaled( 3.5, 3.5, 3.5);
+    glRotated(beta, 0, 1, 1);
+    beta+=5;
     DrawMoebius();
+    glPopMatrix();
+
     /*
-    DrawCylinder();
-    DrawTorus(2,5);
+    //Cube
+    glPushMatrix();
+    glTranslated(-2.0,-2.0,-2.0);
+    glScaled( 1.5, 1.5, 1.5);
     DrawCube();
+    glRotated(alpha, 0, 1, 1);
+    glPopMatrix();
+
+
+    //Sphere
+    glPushMatrix();
+    glTranslated(2.0,2.0,2.0);
+    glScaled( 2.0, 2.0, 2.0);
+    DrawSphere(1,0);
+    glRotated(alpha, 0, 1, 1);
+    glPopMatrix();
+
+    //Pyramid
+    glPushMatrix();
+    glTranslated(2.0,2.0,2.0);
+    glScaled( 2.0, 2.0, 2.0);
+    DrawPyramid();
+    glRotated(alpha, 0, 1, 1);
+    glPopMatrix();
 */
-    glTranslated( 0 ,0 ,-5.0);     // Move 10 units backwards in z, since camera is at origin
-    glScaled( 1.0, 1.0, 1.0);       // scale objects
-    glRotated( beta, 0, 3, 1);     // continuous rotation
-    beta += 5;
-    //SetMaterialColor( 2, 1.0, .2, .2);
-  //  DrawSphere(3,0);
-    //DrawPyramid();
-
-    glTranslated( 0 ,5 ,-5.0);     // Move 10 units backwards in z, since camera is at origin
-    glScaled( 5.0, 5.0, 5.0);       // scale objects
-    glRotated( beta, 5, 3, 1);     // continuous rotation
-    beta += 5;
-   // DrawPyramid();
-
-    glTranslated( 0 ,0 ,-5.0);     // Move 10 units backwards in z, since camera is at origin
-    glScaled( 1.0, 1.0, 1.0);       // scale objects
-    glRotated( gamma3, 0, 3, 1);     // continuous rotation
-    gamma3 += 5;
-    //SetMaterialColor(1, 1.0, .2, .2);
-    //SetMaterialColor( 2, 0.2, 0.2, 1.0);
-    //DrawCube();
-    // make it appear (before this, it's hidden in the rear buffer)
     glFlush();
 }
 
