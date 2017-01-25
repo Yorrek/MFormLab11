@@ -108,109 +108,106 @@ void DrawCube(){ // drawing a cube in OpenGL
 
     glBegin( GL_QUADS); //draws quads
 
-    //Z ist die nach vorne gerichtetet Seite.
+    //Z-Axis is the front
     glNormal3f(0,1,0);//top
-    glVertex3f( halfLengthOfCube, halfLengthOfCube,-halfLengthOfCube);    // Top Right Of The Quad (Top)
-    glVertex3f(-halfLengthOfCube, halfLengthOfCube,-halfLengthOfCube);    // Top Left Of The Quad (Top)
-    glVertex3f(-halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);    // Bottom Left Of The Quad (Top)
-    glVertex3f( halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);    // Bottom Right Of The Quad (Top)
+    glVertex3f( halfLengthOfCube, halfLengthOfCube,-halfLengthOfCube);
+    glVertex3f(-halfLengthOfCube, halfLengthOfCube,-halfLengthOfCube);
+    glVertex3f(-halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);
+    glVertex3f( halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);
 
     glNormal3f(0,-1,0);//bottom
-    glVertex3f( halfLengthOfCube, -halfLengthOfCube, halfLengthOfCube);    // Top Right Of The Quad (Bottom)
-    glVertex3f(-halfLengthOfCube, -halfLengthOfCube, halfLengthOfCube);    // Top Left Of The Quad (Bottom)
-    glVertex3f(-halfLengthOfCube, -halfLengthOfCube,-halfLengthOfCube);    // Bottom Left Of The Quad (Bottom)
-    glVertex3f( halfLengthOfCube, -halfLengthOfCube,-halfLengthOfCube);    // Bottom Right Of The Quad (Bottom)
+    glVertex3f( halfLengthOfCube, -halfLengthOfCube, halfLengthOfCube);
+    glVertex3f(-halfLengthOfCube, -halfLengthOfCube, halfLengthOfCube);
+    glVertex3f(-halfLengthOfCube, -halfLengthOfCube,-halfLengthOfCube);
+    glVertex3f( halfLengthOfCube, -halfLengthOfCube,-halfLengthOfCube);
 
     glNormal3f(0,0,1);//front
-    glVertex3f( halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);    // Top Right Of The Quad (Front)
-    glVertex3f(-halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);    // Top Left Of The Quad (Front)
-    glVertex3f(-halfLengthOfCube,-halfLengthOfCube, halfLengthOfCube);    // Bottom Left Of The Quad (Front)
-    glVertex3f( halfLengthOfCube,-halfLengthOfCube, halfLengthOfCube);    // Bottom Right Of The Quad (Front)
+    glVertex3f( halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);
+    glVertex3f(-halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);
+    glVertex3f(-halfLengthOfCube,-halfLengthOfCube, halfLengthOfCube);
+    glVertex3f( halfLengthOfCube,-halfLengthOfCube, halfLengthOfCube);
 
     glNormal3f(0,0,-1);//back
-    glVertex3f( halfLengthOfCube,-halfLengthOfCube, -halfLengthOfCube);    // Top Right Of The Quad (Back)
-    glVertex3f(-halfLengthOfCube,-halfLengthOfCube, -halfLengthOfCube);    // Top Left Of The Quad (Back)
-    glVertex3f(-halfLengthOfCube, halfLengthOfCube, -halfLengthOfCube);    // Bottom Left Of The Quad (Back)
-    glVertex3f( halfLengthOfCube, halfLengthOfCube, -halfLengthOfCube);    // Bottom Right Of The Quad (Back)
+    glVertex3f( halfLengthOfCube,-halfLengthOfCube, -halfLengthOfCube);
+    glVertex3f(-halfLengthOfCube,-halfLengthOfCube, -halfLengthOfCube);
+    glVertex3f(-halfLengthOfCube, halfLengthOfCube, -halfLengthOfCube);
+    glVertex3f( halfLengthOfCube, halfLengthOfCube, -halfLengthOfCube);
 
     glNormal3f(-1,0,0);//left
-    glVertex3f(-halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);    // Top Right Of The Quad (Left)
-    glVertex3f(-halfLengthOfCube, halfLengthOfCube,-halfLengthOfCube);    // Top Left Of The Quad (Left)
-    glVertex3f(-halfLengthOfCube,-halfLengthOfCube,-halfLengthOfCube);    // Bottom Left Of The Quad (Left)
-    glVertex3f(-halfLengthOfCube,-halfLengthOfCube, halfLengthOfCube);    // Bottom Right Of The Quad (Left)
+    glVertex3f(-halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);
+    glVertex3f(-halfLengthOfCube, halfLengthOfCube,-halfLengthOfCube);
+    glVertex3f(-halfLengthOfCube,-halfLengthOfCube,-halfLengthOfCube);
+    glVertex3f(-halfLengthOfCube,-halfLengthOfCube, halfLengthOfCube);
 
     glNormal3f(1,0,0);//right
-    glVertex3f( halfLengthOfCube, halfLengthOfCube,-halfLengthOfCube);    // Top Right Of The Quad (Right)
-    glVertex3f( halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);    // Top Left Of The Quad (Right)
-    glVertex3f( halfLengthOfCube,-halfLengthOfCube, halfLengthOfCube);    // Bottom Left Of The Quad (Right)
-    glVertex3f( halfLengthOfCube,-halfLengthOfCube,-halfLengthOfCube);    // Bottom Right Of The Quad (Right) - See more at: http://www.codemiles.com/c-opengl-examples/draw-3d-cube-using-opengl-t9018.html#sthash.179MIp09.dpuf
+    glVertex3f( halfLengthOfCube, halfLengthOfCube,-halfLengthOfCube);
+    glVertex3f( halfLengthOfCube, halfLengthOfCube, halfLengthOfCube);
+    glVertex3f( halfLengthOfCube,-halfLengthOfCube, halfLengthOfCube);
+    glVertex3f( halfLengthOfCube,-halfLengthOfCube,-halfLengthOfCube);
     glEnd(); // concludes GL_QUADS
 }
 
 void DrawPyramid(){ // drawing a cylinder in OpenGL
 
-    int lenghtOfQuad = 1;
+    int halfLengthofQuad = 1; // half length of quad
 
     glBegin( GL_QUADS); // each 4 points define a polygon
 
-    //Boden
+    //Bottom
     glNormal3f(0,0,0);
-    glVertex3f( lenghtOfQuad,0, lenghtOfQuad);    // Top Right Of The Quad (Bottom)
-    glVertex3f( lenghtOfQuad,0,-lenghtOfQuad);    // Bottom Right Of The Quad (Bottom)
-    glVertex3f(-lenghtOfQuad,0,-lenghtOfQuad);    // Bottom Left Of The Quad (Bottom)
-    glVertex3f(-lenghtOfQuad,0, lenghtOfQuad);    // Top Left Of The Quad (Bottom)
+    glVertex3f( halfLengthofQuad,0, halfLengthofQuad);
+    glVertex3f( halfLengthofQuad,0,-halfLengthofQuad);
+    glVertex3f(-halfLengthofQuad,0,-halfLengthofQuad);
+    glVertex3f(-halfLengthofQuad,0, halfLengthofQuad);
     glEnd(); // concludes GL_QUADS
 
-    int lenghtOfTriangle = 1;
+    int halfLengtOfTiangle = 1;
 
 
     glBegin( GL_TRIANGLES);
 
-    //hinten
+    //back
     glNormal3f(0,.5,-.5);
-    glVertex3f(lenghtOfTriangle,0,-lenghtOfTriangle);
-    glVertex3f(-lenghtOfTriangle,0,-lenghtOfTriangle);
-    glVertex3f(0,lenghtOfTriangle,0);
+    glVertex3f(halfLengtOfTiangle,0,-halfLengtOfTiangle);
+    glVertex3f(-halfLengtOfTiangle,0,-halfLengtOfTiangle);
+    glVertex3f(0,halfLengtOfTiangle,0);
 
-    //rechts
+    //right
     glNormal3f(.5,.5,0);
-    glVertex3f(lenghtOfTriangle,0,lenghtOfTriangle);
-    glVertex3f(lenghtOfTriangle,0,-lenghtOfTriangle);
-    glVertex3f(0,lenghtOfTriangle,0);
+    glVertex3f(halfLengtOfTiangle,0,halfLengtOfTiangle);
+    glVertex3f(halfLengtOfTiangle,0,-halfLengtOfTiangle);
+    glVertex3f(0,halfLengtOfTiangle,0);
 
-    //vorne
+    //front
     glNormal3f(0,.5,.5);
-    glVertex3f(-lenghtOfTriangle,0,lenghtOfTriangle);
-    glVertex3f(lenghtOfTriangle,0,lenghtOfTriangle);
-    glVertex3f(0,lenghtOfTriangle,0);
+    glVertex3f(-halfLengtOfTiangle,0,halfLengtOfTiangle);
+    glVertex3f(halfLengtOfTiangle,0,halfLengtOfTiangle);
+    glVertex3f(0,halfLengtOfTiangle,0);
 
-    //links
+    //left
     glNormal3f(-.5,.5,0);
-    glVertex3f(-lenghtOfTriangle,0,-lenghtOfTriangle);
-    glVertex3f(-lenghtOfTriangle,0,lenghtOfTriangle);
-    glVertex3f(0,lenghtOfTriangle,0);
+    glVertex3f(-halfLengtOfTiangle,0,-halfLengtOfTiangle);
+    glVertex3f(-halfLengtOfTiangle,0,halfLengtOfTiangle);
+    glVertex3f(0,halfLengtOfTiangle,0);
     glEnd();
 
 }
 
-void DrawTorus(float r, float R){
-    int reso = 40;
-    float *s = new float[ reso+1];
-    //vector < vector <float> > x;
-    //vector < vector <float> > y;
-    //vector < vector <float> > z;
+void DrawTorus(float r, float R){ //drawing a torus in opengl
 
-    float x[reso + 1][reso + 1];
+    int reso = 40; //resolution value
+
+    float *s = new float[ reso+1];
+
+    float x[reso + 1][reso + 1]; //2-D array for thepoints
     float y[reso + 1][reso + 1];
     float z[reso + 1][reso + 1];
-    float n_x[reso + 1][reso + 1];
+
+    float n_x[reso + 1][reso + 1]; //2-D array for the normals
     float n_y[reso + 1][reso + 1];
     float n_z[reso + 1][reso + 1];
 
-    //deque < float > norm_d;
-
-
-    float sx = .0;
+    float sx = .0; //variables for derivation points
     float sy = .0;
     float sz = .0;
     float tx = .0;
@@ -222,58 +219,37 @@ void DrawTorus(float r, float R){
 
     for( int i=0; i <= reso; i++){ // compute x and y coordinates of citcle
         s[i] = doublePI / reso * i;
-        //cout << i << " " << c[i] << endl;
     }
 
-    for ( int i = 0; i <= reso; i++){
+    for ( int i = 0; i <= reso; i++){ // calculating the points
         for ( int j = 0; j <= reso; j++){
             x[i][j] = cosf(s[i]) * (R + r * cosf(s[j]));
             y[i][j] = sinf(s[i]) * (R + r * cosf(s[j]));
             z[i][j] = r * sinf(s[j]);
 
-            sx = -sinf(s[i]) * (R + r * cosf(s[j]));
+            sx = -sinf(s[i]) * (R + r * cosf(s[j])); // calculating the derivation for s
             sy = cosf(s[i]) * (R + r * cosf(s[j]));
             sz = 0;
 
-            tx = cosf(s[i]) * r * -sinf(s[j]);
+            tx = cosf(s[i]) * r * -sinf(s[j]); // calculating the derivation for t
             ty = sinf(s[i]) * r * -sinf(s[j]);
             tz = r * cosf(s[j]);
 
 
-            n[0] = sy * tz - sz * ty;
+            n[0] = sy * tz - sz * ty; //cross product
             n[1] = sz * tx - sx * tz;
             n[2] = sx * ty - sy * tx;
-            /*
 
-            float calc = .0;
-            for (int m = 0; m < 3; m++){
-                calc += n[m] * n[m];
-            }
-
-            float norm = sqrtf(calc);
-*/
-            n_x[i][j] = n[0];// norm;
-            n_y[i][j] = n[1];// norm;
-            n_z[i][j] = n[2];// norm;
-
-            /*
-            x[i][j] += n[0];
-            y[i][j] += n[1];
-            z[i][j] += n[2];
-*/
+            n_x[i][j] = n[0]; // saving the normals
+            n_y[i][j] = n[1];
+            n_z[i][j] = n[2];
 
         }
     }
 
     glBegin(GL_QUADS);
 
-    //float norbert[3];
-
-    //for (int m = 0; m < 3; m++){
-    //    norbert[m] = n[m];
-    //}
-
-    for (int k = 0; k < reso; k++){
+    for (int k = 0; k < reso; k++){ //drawing the torus
         for (int l = 0; l < reso; l++){
             glNormal3f(n_x[l][k],n_y[l][k],n_z[l][k]);
             glVertex3f(x[l][k],y[l][k],z[l][k]);
@@ -292,24 +268,19 @@ void DrawTorus(float r, float R){
     delete[] s; // de-allocate space
 }
 
-void DrawSphere(float r, float R){
-    int reso = 360;
+void DrawSphere(float r, float R){ //drawing a sphere in opengl
+    int reso = 360; // resolution value
     float *s = new float[ reso+1];
-    //vector < vector <float> > x;
-    //vector < vector <float> > y;
-    //vector < vector <float> > z;
 
-    float x[reso + 1][reso + 1];
+    float x[reso + 1][reso + 1]; //2-D array for points
     float y[reso + 1][reso + 1];
     float z[reso + 1][reso + 1];
-    float n_x[reso + 1][reso + 1];
+
+    float n_x[reso + 1][reso + 1]; //2-D array for the normals
     float n_y[reso + 1][reso + 1];
     float n_z[reso + 1][reso + 1];
 
-    //deque < float > norm_d;
-
-
-    float sx = .0;
+    float sx = .0; // variables for the derivation points
     float sy = .0;
     float sz = .0;
     float tx = .0;
@@ -318,51 +289,39 @@ void DrawSphere(float r, float R){
 
     float n[3];
 
-
     for( int i=0; i <= reso; i++){ // compute x and y coordinates of citcle
         s[i] = doublePI / reso * i;
-        //cout << i << " " << c[i] << endl;
     }
 
-    for ( int i = 0; i <= reso; i++){
+    for ( int i = 0; i <= reso; i++){ //calculating the points
         for ( int j = 0; j <= reso; j++){
             x[i][j] = cosf(s[i]) * (R + r * cosf(s[j]));
             y[i][j] = sinf(s[i]) * (R + r * cosf(s[j]));
             z[i][j] = r * sinf(s[j]);
 
-            sx = -sinf(s[i]) * (R + r * cosf(s[j]));
+            sx = -sinf(s[i]) * (R + r * cosf(s[j])); // calculating the derivation for s
             sy = cosf(s[i]) * (R + r * cosf(s[j]));
             sz = 0;
 
-            tx = cosf(s[i]) * r * -sinf(s[j]);
+            tx = cosf(s[i]) * r * -sinf(s[j]); // calculating the derivation for t
             ty = sinf(s[i]) * r * -sinf(s[j]);
             tz = r * cosf(s[j]);
 
 
-            n[0] = sy * tz - sz * ty;
+            n[0] = sy * tz - sz * ty; // cross product
             n[1] = sz * tx - sx * tz;
             n[2] = sx * ty - sy * tx;
-            /*
 
-            float calc = .0;
-            for (int m = 0; m < 3; m++){
-                calc += n[m] * n[m];
-            }
-
-            float norm = sqrtf(calc);
-*/
-            n_x[i][j] = n[0];// norm;
-            n_y[i][j] = n[1];// norm;
-            n_z[i][j] = n[2];// norm;
-
-
+            n_x[i][j] = n[0]; // save the normals
+            n_y[i][j] = n[1];
+            n_z[i][j] = n[2];
 
         }
     }
 
     glBegin(GL_QUADS);
 
-    for (int k = 0; k < reso / 4; k++){
+    for (int k = 0; k < reso / 4; k++){ //drawing the first upper quater
         for (int l = 0; l < reso / 2; l++){
             glNormal3f(n_x[l][k],n_y[l][k],n_z[l][k]);
             glVertex3f(x[l][k],y[l][k],z[l][k]);
@@ -375,8 +334,7 @@ void DrawSphere(float r, float R){
         }
     }
 
-
-    for (int k = 0; k < reso / 4; k++){
+    for (int k = 0; k < reso / 4; k++){ // drawing the second upper quater
         for (int l = reso / 2; l < reso; l++){
             glNormal3f(n_x[l][k],n_y[l][k],n_z[l][k]);
             glVertex3f(x[l][k],y[l][k],z[l][k]);
@@ -390,8 +348,7 @@ void DrawSphere(float r, float R){
         }
     }
 
-
-    for (int k = reso / 4 * 3; k < reso ; k++){
+    for (int k = reso / 4 * 3; k < reso ; k++){ // drawing the first lower quater
         for (int l = 0; l < reso / 2; l++){
             glNormal3f(n_x[l][k],n_y[l][k],n_z[l][k]);
             glVertex3f(x[l][k],y[l][k],z[l][k]);
@@ -405,8 +362,7 @@ void DrawSphere(float r, float R){
         }
     }
 
-
-    for (int k = reso / 4 * 3; k < reso ; k++){
+    for (int k = reso / 4 * 3; k < reso ; k++){ // drawing the fourth lower quater
         for (int l = reso / 2; l < reso; l++){
             glNormal3f(n_x[l][k],n_y[l][k],n_z[l][k]);
             glVertex3f(x[l][k],y[l][k],z[l][k]);
@@ -419,28 +375,26 @@ void DrawSphere(float r, float R){
 
         }
     }
-
-
 
     glEnd(); // concludes GL_QUADS
 
     delete[] s; // de-allocate space
 }
 
-void DrawMoebius(){
+void DrawMoebius(){ //drawing a mobius strip in opengl
     int reso = 50;
     deque < float > a;
     vector < float > r;
 
-    float x[reso + 1][reso + 1];
+    float x[reso + 1][reso + 1]; //2-D array for the points
     float y[reso + 1][reso + 1];
     float z[reso + 1][reso + 1];
 
-    for (int i = 0; i <= reso; i++){
+    for (int i = 0; i <= reso; i++){ // reso + 1 values from 0 to 2 * pi
         a.push_back(doublePI / reso * i);
     }
 
-    for (float i = -1.; i <= 1.1; i += 2. / (float)reso){
+    for (float i = -1.; i <= 1.1; i += 2. / (float)reso){ // reso + 1 values from -1 to 1
         if ( i >= float(1)){
             r.push_back(float(1));
             i = 1.2;
@@ -450,7 +404,7 @@ void DrawMoebius(){
         }
     }
 
-    for (int i = 0; i <= reso; i++){
+    for (int i = 0; i <= reso; i++){ //calculating the points of the mobius strip
         for ( int j = 0; j <= reso; j++){
             x[i][j] = cosf(a[i]) * (1 + (r[j]/2) * cosf(a[i] / 2));
             y[i][j] = sinf(a[i]) * (1 + (r[j]/2) * cosf(a[i] / 2));
@@ -459,7 +413,7 @@ void DrawMoebius(){
     }
 
     glBegin(GL_QUADS);
-    for (int i = 0; i < reso; i++){
+    for (int i = 0; i < reso; i++){ // drawing the mobius points
         for ( int j = 0; j < reso; j++){
             glVertex3f(x[j][i],y[j][i],z[j][i]);
             glVertex3f(x[j+1][i],y[j+1][i],z[j+1][i]);
@@ -470,11 +424,6 @@ void DrawMoebius(){
     }
 
     glEnd();
-    float bla = a.front();
-    a.pop_front();
-    a.push_back(bla);
-
-
 }
 
 // define material color properties for front and back side
@@ -563,7 +512,7 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glPushMatrix();
     glTranslated(.0,.0,-1.5);
     glScaled( 1.0, 1.0, 1.0);
-    DrawTorus(1,4);
+    DrawSphere(1,0);
     glRotated(alpha, 0, 1, 1);
     glPopMatrix();
 
@@ -575,11 +524,12 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glScaled( 3.5, 3.5, 3.5);
     glRotated(beta, 0, 1, 1);
     beta+=5;
-    DrawCube();
     glPopMatrix();
 
     /*
+    DrawCube();
     //Cube
+    DrawTorus(1,4);
     DrawMoebius();
     glPushMatrix();
     glTranslated(-2.0,-2.0,-2.0);
@@ -592,7 +542,6 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glPushMatrix();
     glTranslated(2.0,2.0,2.0);
     glScaled( 2.0, 2.0, 2.0);
-    DrawSphere(1,0);
     glRotated(alpha, 0, 1, 1);
     glPopMatrix();
 
