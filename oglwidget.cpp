@@ -11,6 +11,13 @@ using namespace std;
 static double alpha = 45.0; // rotation angle
 static double beta = 30.0; // rotation angle
 static double gamma3 = 85.0; // rotation angle
+static double angleTorus1 = 0.0;
+static double angleTorus2 = 60.0;
+static double angleTorus3 = 120.0;
+static double angleTorus4 = 180.0;
+static double angleTorus5 = 240.0;
+static double angleTorus6 = 300.0;
+
 static float doublePI = 2 * PI;
 
 
@@ -430,7 +437,7 @@ void DrawSphere(float r, float R){
 
 void DrawMoebius(){
     int reso = 50;
-    deque < float > a;
+    vector < float > a;
     vector < float > r;
 
     float x[reso + 1][reso + 1];
@@ -471,11 +478,6 @@ void DrawMoebius(){
     }
 
     glEnd();
-    float bla = a.front();
-    a.pop_front();
-    a.push_back(bla);
-
-
 }
 
 // define material color properties for front and back side
@@ -538,66 +540,131 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glEnable(GL_NORMALIZE); // this is necessary when using glScale (keep normals to unit length)
 
     // set background color
-    glClearColor(0.8, 0.8, 1.0, 1.0); // bright blue
+    glClearColor(0, .1, .1, .1); // bright blue
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // draw the scene
     glMatrixMode( GL_MODELVIEW);
     glLoadIdentity();				// Reset The Current Modelview Matrix
-    glTranslated( 0 ,0 ,-10.0);     // Move 10 units backwards in z, since camera is at origin
-    glScaled( 1.0, 1.0, 1.0);       // scale objects
-    glRotated( alpha, 0, 3, 1);     // continuous rotation
-    alpha += 5; // Speed of rotation
 
-    // define color: 1=front, 2=back, 3=both, followed by r, g, and b
-    SetMaterialColor( 1, 1.0, .2, .2);  // front color is red
-    SetMaterialColor( 2, 0.2, 0.2, 1.0); // back color is blue
 
-    //draw a cylinder with default resolution
-    glPushMatrix();
-    //DrawCylinder();
-    glPopMatrix();
 
-    glRotated(-90,0,0,0);
 
     //Torus
-    glPushMatrix();
-    glTranslated(.0,.0,-1.5);
-    glScaled( 1.0, 1.0, 1.0);
-    DrawTorus(1,4);
-    glRotated(alpha, 0, 1, 1);
-    glPopMatrix();
 
-    glRotated(-90,0,0,0);
+    glPushMatrix();
+    glTranslated(.0,.0,.0);
+
+    SetMaterialColor( 3, 0.0, 0.3, 1.0);
+    glScaled( 1.2, 1.2, 1.2);
+    glRotated(angleTorus1, 1, 1, -1);
+    angleTorus1 += 1;
+    DrawTorus(1,12);
+
+    SetMaterialColor( 3, 0.1, 0.4, 0.8);
+    glScaled( 1.0, 1., 1.);
+    glRotated(angleTorus1, 1, 1, -1);
+    //angleTorus2 += 1;
+    DrawTorus(1,10);
+
+    SetMaterialColor( 3, .2, .5, .6);
+    glScaled( .8, .8, .8);
+    glRotated(angleTorus1, 1, 1, -1);
+    //angleTorus3 += 1;
+    DrawTorus(1,10);
+
+    SetMaterialColor( 3, .3, 0.6, 0.4);
+    glScaled( .8, .8, .8);
+    glRotated(angleTorus1, 1, 1, -1);
+    //angleTorus3 += 1;
+    DrawTorus(1,10);
+
+    SetMaterialColor( 3, .4, .7, 0.2);
+    glScaled( .8, .8, .8);
+    glRotated(angleTorus1, 1, 1, -1);
+    //angleTorus3 += 1;
+    DrawTorus(1,10);
+
+
 
     //Mobius Strip
-    glPushMatrix();
-    glTranslated(3.0,3.0,3.0);
-    glScaled( 3.5, 3.5, 3.5);
-    glRotated(beta, 0, 1, 1);
-    beta+=5;
+
+    SetMaterialColor( 3, 0.9, 0.2, 0.1);
+    glScaled( 2.5,2.5,2.5);
+    glRotated(beta, 1, 0, -1);
+    beta+=3;
     DrawMoebius();
+
+
+    //Sphere
+
+    SetMaterialColor( 3, 1., .8, 0.1);
+    glTranslated(3,0,0);
+    glScaled( 0.4, 0.4, 0.4);
+    //glRotated(alpha, 1, 1, -1);
+    //alpha += 1;
+    DrawSphere(1,0);
+
+
+    //Cube
+
+    glTranslated(-15,3,0);
+    glScaled( .8, .8, .8);
+    //glRotated(beta, 1, 1, 1);
+    //beta += 3;
+    DrawCube();
+
+    //Pyramid
+
+    glTranslated(10,5,0);
+    glScaled( 1.0, 1.0, 1.0);
+    //glRotated(beta, 0, 1, 1);
+    DrawPyramid();
+
+
+    // Cylinder
+
+    glTranslated(0,-15,0);
+    glScaled( 1.0, 1.0, 1.0);
+    //glRotated(beta, 0, 1, 1);
+    DrawCylinder();
+
     glPopMatrix();
 
-    /*
+
+
+
+
+    //Sphere
+/*
+    glPushMatrix();
+    SetMaterialColor( 3, 1., .8, 0.1);
+    glTranslated(4.5,0,0);
+    glScaled( .8, .8, .8);
+    DrawSphere(1,0);
+    glRotated(alpha, alpha, alpha, -1 * alpha);
+    alpha += 1;
+    glPopMatrix();
+*/
+
+
+
     //Cube
+/*
     glPushMatrix();
     glTranslated(-2.0,-2.0,-2.0);
     glScaled( 1.5, 1.5, 1.5);
     DrawCube();
     glRotated(alpha, 0, 1, 1);
     glPopMatrix();
+*/
 
 
-    //Sphere
-    glPushMatrix();
-    glTranslated(2.0,2.0,2.0);
-    glScaled( 2.0, 2.0, 2.0);
-    DrawSphere(1,0);
-    glRotated(alpha, 0, 1, 1);
-    glPopMatrix();
+
+
 
     //Pyramid
+/*
     glPushMatrix();
     glTranslated(2.0,2.0,2.0);
     glScaled( 2.0, 2.0, 2.0);
@@ -605,6 +672,37 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glRotated(alpha, 0, 1, 1);
     glPopMatrix();
 */
+
+
+    /*
+    glTranslated( 0 ,0 ,-10.0);     // Move 10 units backwards in z, since camera is at origin
+    glScaled( 1.0, 1.0, 1.0);       // scale objects
+    glRotated( alpha, 0, 3, 1);     // continuous rotation
+    alpha += 5; // Speed of rotation
+*/
+    // define color: 1=front, 2=back, 3=both, followed by r, g, and b
+    SetMaterialColor( 1, 1.0, .2, .2);  // front color is red
+    SetMaterialColor( 2, .2, .2, 1.0); // back color is blue
+
+    //draw a cylinder with default resolution
+    glPushMatrix();
+
+    glPopMatrix();
+
+    glRotated(-90,0,0,0);
+
+
+
+
+
+
+
+
+
+
+
+
+
     glFlush();
 }
 
