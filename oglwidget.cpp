@@ -8,11 +8,11 @@
 #define PI 3.14159265358979323846
 using namespace std;
 
-static double alpha = 45.0; // rotation angle
 static double beta = 30.0; // rotation angle
-static double gamma3 = 85.0; // rotation angle
-static float doublePI = 2 * PI; // double pi
 
+static double angleTorus1 = 0.0;
+
+static float doublePI = 2 * PI;
 
 // initialize Open GL lighting and projection matrix
 void InitLightingAndProjection() // to be executed once before drawing
@@ -93,14 +93,12 @@ void DrawCylinder( int reso = 16){ // drawing a cylinder in OpenGL
                     sin( 2.0 * PI * j / reso ),
                     3
                     );
-
     }
     glEnd();
 
     delete[] c; // de-allocate space
     delete[] s;
 }
-
 
 void DrawCube(){ // drawing a cube in OpenGL
 
@@ -163,7 +161,6 @@ void DrawPyramid(){ // drawing a cylinder in OpenGL
 
     int halfLengtOfTiangle = 1;
 
-
     glBegin( GL_TRIANGLES);
 
     //back
@@ -190,7 +187,6 @@ void DrawPyramid(){ // drawing a cylinder in OpenGL
     glVertex3f(-halfLengtOfTiangle,0,halfLengtOfTiangle);
     glVertex3f(0,halfLengtOfTiangle,0);
     glEnd();
-
 }
 
 void DrawTorus(float r, float R){ //drawing a torus in opengl
@@ -216,7 +212,6 @@ void DrawTorus(float r, float R){ //drawing a torus in opengl
 
     float n[3];
 
-
     for( int i=0; i <= reso; i++){ // compute x and y coordinates of citcle
         s[i] = doublePI / reso * i;
     }
@@ -235,7 +230,6 @@ void DrawTorus(float r, float R){ //drawing a torus in opengl
             ty = sinf(s[i]) * r * -sinf(s[j]);
             tz = r * cosf(s[j]);
 
-
             n[0] = sy * tz - sz * ty; //cross product
             n[1] = sz * tx - sx * tz;
             n[2] = sx * ty - sy * tx;
@@ -243,7 +237,6 @@ void DrawTorus(float r, float R){ //drawing a torus in opengl
             n_x[i][j] = n[0]; // saving the normals
             n_y[i][j] = n[1];
             n_z[i][j] = n[2];
-
         }
     }
 
@@ -259,7 +252,6 @@ void DrawTorus(float r, float R){ //drawing a torus in opengl
             glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
             glNormal3f(n_x[l][k+1],n_y[l][k+1],n_z[l][k+1]);
             glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
-
         }
     }
 
@@ -307,7 +299,6 @@ void DrawSphere(float r, float R){ //drawing a sphere in opengl
             ty = sinf(s[i]) * r * -sinf(s[j]);
             tz = r * cosf(s[j]);
 
-
             n[0] = sy * tz - sz * ty; // cross product
             n[1] = sz * tx - sx * tz;
             n[2] = sx * ty - sy * tx;
@@ -315,7 +306,6 @@ void DrawSphere(float r, float R){ //drawing a sphere in opengl
             n_x[i][j] = n[0]; // save the normals
             n_y[i][j] = n[1];
             n_z[i][j] = n[2];
-
         }
     }
 
@@ -344,7 +334,6 @@ void DrawSphere(float r, float R){ //drawing a sphere in opengl
             glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
             glNormal3f(n_x[l][k+1],n_y[l][k+1],n_z[l][k+1]);
             glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
-
         }
     }
 
@@ -358,7 +347,6 @@ void DrawSphere(float r, float R){ //drawing a sphere in opengl
             glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
             glNormal3f(n_x[l][k+1],n_y[l][k+1],n_z[l][k+1]);
             glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
-
         }
     }
 
@@ -372,10 +360,8 @@ void DrawSphere(float r, float R){ //drawing a sphere in opengl
             glVertex3f(x[l+1][k+1],y[l+1][k+1],z[l+1][k+1]);
             glNormal3f(n_x[l][k+1],n_y[l][k+1],n_z[l][k+1]);
             glVertex3f(x[l][k+1],y[l][k+1],z[l][k+1]);
-
         }
     }
-
     glEnd(); // concludes GL_QUADS
 
     delete[] s; // de-allocate space
@@ -383,7 +369,7 @@ void DrawSphere(float r, float R){ //drawing a sphere in opengl
 
 void DrawMoebius(){ //drawing a mobius strip in opengl
     int reso = 50;
-    deque < float > a;
+    vector < float > a;
     vector < float > r;
 
     float x[reso + 1][reso + 1]; //2-D array for the points
@@ -422,7 +408,6 @@ void DrawMoebius(){ //drawing a mobius strip in opengl
             glVertex3f(x[j][i+1],y[j][i+1],z[j][i+1]);
         }
     }
-
     glEnd();
 }
 
@@ -486,73 +471,73 @@ void OGLWidget::paintGL() // draw everything, to be called repeatedly
     glEnable(GL_NORMALIZE); // this is necessary when using glScale (keep normals to unit length)
 
     // set background color
-    glClearColor(0.8, 0.8, 1.0, 1.0); // bright blue
+    glClearColor(0, .1, .1, .1); // bright blue
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // draw the scene
     glMatrixMode( GL_MODELVIEW);
     glLoadIdentity();				// Reset The Current Modelview Matrix
-    glTranslated( 0 ,0 ,-10.0);     // Move 10 units backwards in z, since camera is at origin
-    glScaled( 1.0, 1.0, 1.0);       // scale objects
-    glRotated( alpha, 0, 3, 1);     // continuous rotation
-    alpha += 5; // Speed of rotation
-
-    // define color: 1=front, 2=back, 3=both, followed by r, g, and b
-    SetMaterialColor( 1, 1.0, .2, .2);  // front color is red
-    SetMaterialColor( 2, 0.2, 0.2, 1.0); // back color is blue
-
-    //draw a cylinder with default resolution
-    glPushMatrix();
-    //DrawCylinder();
-    glPopMatrix();
-
-    glRotated(-90,0,0,0);
 
     //Torus
     glPushMatrix();
-    glTranslated(.0,.0,-1.5);
-    glScaled( 1.0, 1.0, 1.0);
-    DrawSphere(1,0);
-    glRotated(alpha, 0, 1, 1);
-    glPopMatrix();
+    glTranslated(.0,.0,.0);
 
-    glRotated(-90,0,0,0);
+    SetMaterialColor( 3, 0.0, 0.3, 1.0);
+    glScaled( 1.2, 1.2, 1.2);
+    glRotated(angleTorus1, 1, 1, -1);
+    angleTorus1 += 1;
+    DrawTorus(1,12);
+
+    SetMaterialColor( 3, 0.1, 0.4, 0.8);
+    glScaled( 1.0, 1., 1.);
+    glRotated(angleTorus1, 1, 1, -1);
+    DrawTorus(1,10);
+
+    SetMaterialColor( 3, .2, .5, .6);
+    glScaled( .8, .8, .8);
+    glRotated(angleTorus1, 1, 1, -1);
+    DrawTorus(1,10);
+
+    SetMaterialColor( 3, .3, 0.6, 0.4);
+    glScaled( .8, .8, .8);
+    glRotated(angleTorus1, 1, 1, -1);
+    DrawTorus(1,10);
+
+    SetMaterialColor( 3, .4, .7, 0.2);
+    glScaled( .8, .8, .8);
+    glRotated(angleTorus1, 1, 1, -1);   
+    DrawTorus(1,10);
 
     //Mobius Strip
-    glPushMatrix();
-    glTranslated(3.0,3.0,3.0);
-    glScaled( 3.5, 3.5, 3.5);
-    glRotated(beta, 0, 1, 1);
-    beta+=5;
-    glPopMatrix();
-
-    /*
-    DrawCube();
-    //Cube
-    DrawTorus(1,4);
+    SetMaterialColor( 3, 0.9, 0.2, 0.1);
+    glScaled( 2.5,2.5,2.5);
+    glRotated(beta, 1, 0, -1);
+    beta+=3;
     DrawMoebius();
-    glPushMatrix();
-    glTranslated(-2.0,-2.0,-2.0);
-    glScaled( 1.5, 1.5, 1.5);
-    glRotated(alpha, 0, 1, 1);
-    glPopMatrix();
-
 
     //Sphere
-    glPushMatrix();
-    glTranslated(2.0,2.0,2.0);
-    glScaled( 2.0, 2.0, 2.0);
-    glRotated(alpha, 0, 1, 1);
-    glPopMatrix();
+    SetMaterialColor( 3, 1., .8, 0.1);
+    glTranslated(3,0,0);
+    glScaled( 0.4, 0.4, 0.4);
+    DrawSphere(1,0);
+
+    //Cube
+    glTranslated(-15,3,0);
+    glScaled( .8, .8, .8);
+    DrawCube();
 
     //Pyramid
-    glPushMatrix();
-    glTranslated(2.0,2.0,2.0);
-    glScaled( 2.0, 2.0, 2.0);
+    glTranslated(10,5,0);
+    glScaled( 1.0, 1.0, 1.0);
     DrawPyramid();
-    glRotated(alpha, 0, 1, 1);
+
+    // Cylinder
+    glTranslated(0,-15,0);
+    glScaled( 1.0, 1.0, 1.0);
+    DrawCylinder();
+
     glPopMatrix();
-*/
+
     glFlush();
 }
 
